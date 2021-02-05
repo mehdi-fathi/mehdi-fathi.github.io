@@ -1,21 +1,31 @@
 
 <html>
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <title>Eloquent Filter adds custom filters to your Eloquent Models in Laravel.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Eloquent Filter" />
+    <meta name="description" content="Eloquent Filter adds custom filters to your Eloquent Models in Laravel.<br />
+        It's easy to use and fully dynamic." />
+    <meta property="og:description" content="Eloquent Filter adds custom filters to your Eloquent Models in Laravel." />
+    <link rel="canonical" href="https://github.com/mehdi-fathi/eloquent-filter/" />
+    <meta property="og:url" content="https://github.com/mehdi-fathi/eloquent-filter" />
+    <meta property="og:site_name" content="Eloquent-filter" />
 </head>
 <body>
 <div id='content'>
     <h1 id="eloquent-filter">Eloquent Filter</h1>
     <p><img src="./eloquent-filter.jpg" alt="alt text" title="eloquent-filter" /></p>
-    <p><a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter"><img src="https://img.shields.io/packagist/v/mehdi-fathi/eloquent-filter" alt="Latest Stable Version" /></a><br />
-        <img src="https://github.com/mehdi-fathi/eloquent-filter/workflows/Run%20tests/badge.svg?branch=master" alt="Run tests" /><br />
-        <a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter"><img src="https://poser.pugx.org/mehdi-fathi/eloquent-filter/license" alt="License" /></a><br />
-        <a href="https://github.com/mehdi-fathi/eloquent-filter/stargazers"><img src="https://img.shields.io/github/stars/mehdi-fathi/eloquent-filter" alt="GitHub stars" /></a><br />
-        <a href="https://github.styleci.io/repos/149638067"><img src="https://github.styleci.io/repos/149638067/shield?branch=master" alt="StyleCI" /></a><br />
-        <a href="https://travis-ci.org/mehdi-fathi/eloquent-filter"><img src="https://travis-ci.org/mehdi-fathi/eloquent-filter.svg?branch=master" alt="Build Status" /></a><br />
-        <a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter"><img src="https://img.shields.io/packagist/dm/mehdi-fathi/eloquent-filter?color=blue" alt="Monthly Downloads" /></a></p>
-    <p>Eloquent Filter adds custom filters to your Eloquent Models in Laravel.<br />
+    <div style="">
+        <a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter"><img src="https://img.shields.io/packagist/v/mehdi-fathi/eloquent-filter" alt="Latest Stable Version" /></a>
+        <img src="https://github.com/mehdi-fathi/eloquent-filter/workflows/Run%20tests/badge.svg?branch=master" alt="Run tests" />
+        <a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter"><img src="https://poser.pugx.org/mehdi-fathi/eloquent-filter/license" alt="License" /></a>
+        <a href="https://github.com/mehdi-fathi/eloquent-filter/stargazers"><img src="https://img.shields.io/github/stars/mehdi-fathi/eloquent-filter" alt="GitHub stars" /></a>
+        <a href="https://github.styleci.io/repos/149638067"><img src="https://github.styleci.io/repos/149638067/shield?branch=master" alt="StyleCI" /></a>
+        <a href="https://travis-ci.org/mehdi-fathi/eloquent-filter"><img src="https://travis-ci.org/mehdi-fathi/eloquent-filter.svg?branch=master" alt="Build Status" /></a>
+        <a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter"><img src="https://img.shields.io/packagist/dm/mehdi-fathi/eloquent-filter?color=blue" alt="Monthly Downloads" /></a>
+    </div>
+    <p>Eloquent Filter adds custom filters to your Eloquent Models in Laravel.
         It's easy to use and fully dynamic.</p>
     <p><a href="https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/master/donate.png"><img src="http://KristinitaTest.github.io/donate/Bitcoin-Donate-button.png" alt="Bitcoin Donate Button" /></a></p>
     <h2 id="table-of-content">Table of Content</h2>
@@ -72,7 +82,7 @@ class UserController extends Controller
 </code></pre>
     <p>This solution is simple and would work fine.<br />
         But you'd have to add a condition for each filter you need. <br />
-        Especially with more complex filtering your code can become a Monster very fast! :boom: </p>
+        Especially with more complex filtering your code can become a Monster very fast! BOOM! </p>
     <h3 id="a-simple-implementation-with-eloquent-filter">A simple implementation with Eloquent Filter</h3>
     <p>Eloquent Filter can help you to fix that problem. Just you will set query string to work with that.<br />
         It will save you time and minimize the complexity of your code.</p>
@@ -97,7 +107,7 @@ class UsersController
 }
 </code></pre>
     <p>With this Eloquent filter implementation you can use all the documented filters!</p>
-    <h2 id="electric_plug-installation">:electric_plug: Installation</h2>
+    <h2 id="electric_plug-installation"> Installation</h2>
     <p>1- Run this Composer command to install the latest version</p>
     <pre><code>  $ composer require mehdi-fathi/eloquent-filter
 </code></pre>
@@ -123,7 +133,7 @@ class UsersController
 ],
 </code></pre>
     <p>That's it enjoy! :boom:</p>
-    <h2 id="book-basic-usage">:book: Basic Usage</h2>
+    <h2 id="book-basic-usage">Basic Usage</h2>
     <h3 id="config-model-and-set-whitelist">Config Model and set whitelist</h3>
     <p>Add Filterable trait to your models and set fields that you will want filter in whitelist. You can override this method in your models.</p>
     <pre><code class="php language-php">use eloquentFilter\QueryFilter\ModelFilters\Filterable;
@@ -230,7 +240,7 @@ SELECT ... WHERE ... first_name = 'mehdi' AND last_name = 'fathi'
 
 SELECT ... WHERE ... username in ('ali','ali22') AND family = 'ahmadi'
 </code></pre>
-    <p><strong><em>OrWhere (New feature :fire:)</em></strong></p>
+    <p><strong><em>OrWhere (New feature)</em></strong></p>
     <p>This example make method <code>orWhere</code>.</p>
     <pre><code>/users/list?name=mehdi&amp;username=fathi&amp;or[username]=ali
 
