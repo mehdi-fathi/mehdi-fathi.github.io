@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Eloquent filter</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
+          type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top"
+    ><span class="d-block d-lg-none"></span>
+        <span class="d-none d-lg-block">
+<!--            <img class="img-fluid img-profile rounded-circle mx-auto mb-2"-->
+            <!--                                             src="assets/img/profile.jpg" alt=""/>-->
+        </span></a
+    >
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Instalation">Instalation</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#BasicUsage">Basic Usage</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
+        </ul>
+    </div>
+</nav>
+<!-- Page Content-->
+<div class="container-fluid p-0">
+    <!-- About-->
+    <section class="resume-section" id="about"
+             style="background-image: url('https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/master/eloquent-filter.jpg');background-size: cover">
+        <div class="resume-section-content">
+            <h1 class="mb-10">Eloquent <span class="text-primary">Filter</span></h1>
+            <br>
+            <div style="background-color: white;opacity: 0.6">
+
+                <p class="lead mb-5 font-italic" style="color: #170000">
+                    A package for filter data of models by query string. Easy to use and full dynamic.
+                    You can generate full dynamic query with the query string.
+                    The eloquent filter is perfect for making filter or search pages.
+                    <br>
+                    The Eloquent Filter is stable on PHP 7.1,7.2,7.3,7.4 and Laravel 5.x,6.x,7.x.
+
+                </p>
+            </div>
+
+            <div class="social-icons">
+                <a class="social-icon" href="https://github.com/mehdi-fathi/eloquent-filter"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter">
+
+                    <img src="https://poser.pugx.org/mehdi-fathi/eloquent-filter/downloads"/>
+                </a>
+                <a href="https://github.com/mehdi-fathi/eloquent-filter">
+
+                    <img src="https://travis-ci.org/mehdi-fathi/eloquent-filter.svg?branch=master"/>
+                </a>
+                <a href="https://github.com/mehdi-fathi/eloquent-filter">
+                    <img src="https://img.shields.io/github/stars/mehdi-fathi/eloquent-filter"/>
+                </a>
+                <img src="https://github.com/mehdi-fathi/eloquent-filter/workflows/Run%20tests/badge.svg?branch=master"/>
+                <a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter">
+
+                    <img src="https://poser.pugx.org/mehdi-fathi/eloquent-filter/v/stable"/>
+                </a>
+
+
+            </div>
+        </div>
+    </section>
+    <hr class="m-0"/>
+    <!-- Experience-->
+    <section class="resume-section" id="Instalation">
+        <div class="resume-section-content">
+            <h2 class="mb-5">Instalation</h2>
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h4 class="mb-0">1- Run the Composer command</h4>
+
+                    <p>
+                        For install just run this command:
+                    </p>
+                    <p>
+                        <!-- HTML generated using hilite.me -->
+                    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">  <span
+                            style="color: #FF0000; background-color: #FFAAAA">$</span> composer require mehdi<span
+                            style="color: #333333">-</span>fathi<span style="color: #333333">/</span>eloquent<span
+                            style="color: #333333">-</span>filter
+</pre>
+                    </div>
+
+                    </p>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h4 class="mb-0">2- Add ServiceProvider</h4>
+                    <br>
+
+                    <span>
+                        Add eloquentFilter\ServiceProvider::class to provider app.php
+                    </span>
+
+                    <p>
+
+
+                        <!-- HTML generated using hilite.me -->
+                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">
+
+'providers' => [
+  /*
+   * Package Service Providers...
+   */
+    eloquentFilter\ServiceProvider::class
+],
+</pre>
+                    </div>
+                    </p>
+
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h4 class="mb-0">3- Add Facade </h4>
+                    <br>
+                    <p>
+                        Add Facade 'EloquentFilter' => eloquentFilter\Facade\EloquentFilter::class to aliases app.php
+                    </p>
+
+                    <p>
+
+
+                        <!-- HTML generated using hilite.me -->
+                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">
+
+'alias' => [
+  /*
+   * Facade alias...
+   */
+    'EloquentFilter' => eloquentFilter\Facade\EloquentFilter::class,
+],
+</pre>
+                    </div>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="resume-section" id="BasicUsage">
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="flex-grow-1">
+                <h3 class="mb-0">Basic Usage
+                </h3>
+                <div>
+
+                    <div class="subheading mb-3">Config your model</div>
+                    <p>
+                        Add Filterable trait to your models and set fields that you will want filter in
+                        whitelist.You
+                        can override this method in your models.
+                    </p>
+
+                    <!-- HTML generated using hilite.me -->
+                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">use eloquentFilter\QueryFilter\ModelFilters\Filterable;
+
+class User extends Model
+{
+    use Filterable;
+
+    private static $whiteListFilter =[
+        &#39;id&#39;,
+        &#39;username&#39;,
+        &#39;email&#39;,
+        &#39;created_at&#39;,
+        &#39;updated_at&#39;,
+    ];
+}
+</pre>
+                    </div>
+                    <br>
+                    <p>
+                        You can set * char for filter in all fields as like below example:
+
+                    </p>
+
+                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">
+private static $whiteListFilter = ['*'];
+                    </pre>
+                    </div>
+                    <br>
+                    <p>You can add or set <code>$whiteListFilter</code> on the fly in your method.For example:</p>
+
+                </div>
+
+                <div>
+
+                    <div class="subheading mb-3">
+                        Set array to WhiteListFilter
+                    </div>
+                    <p>
+                        Note that this method override $whiteListFilter
+                    </p>
+
+                    <!-- HTML generated using hilite.me -->
+                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">
+User::setWhiteListFilter(['name']);
+</pre>
+                    </div>
+                    <br>
+                    <p>
+                        You can set * char for filter in all fields as like below example:
+
+                    </p>
+
+                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">
+private static $whiteListFilter = ['*'];
+                    </pre>
+                    </div>
+                    <br>
+                    <p>You can add or set <code>$whiteListFilter</code> on the fly in your method.For example:</p>
+
+                </div>
+
+
+                <div>
+
+                    <div class="subheading mb-3">
+                        Use in your controller
+                    </div>
+                    <p>
+                        Change your code on controller as like below example:
+
+                    </p>
+
+                    <!-- HTML generated using hilite.me -->
+                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">
+namespace App\Http\Controllers;
+
+/**
+ * Class UsersController.
+ */
+class UsersController
+{
+
+    public function list()
+    {
+          if (!empty(request()->get('username'))) {
+
+              $users = User::ignoreRequest('perpage')->filter()->with('posts')
+                        ->orderByDesc('id')->paginate(request()->get('perpage'),['*'],'page');
+
+          } else {
+              $users = User::filter(
+                ['username' => ['mehdi','ali']]
+                )->with('posts')->orderByDesc('id')->paginate(10,['*'],'page');
+          }
+    }
+}
+</pre>
+                    </div>
+
+                    <br>
+                    <p>
+                        <ul>
+                            <li>
+                    <p>Note that Eloquent filter by default using query string to make query. Also you can set array
+                        to <code>filter</code> method Model for make
+                        your own custom condition without querystring.</p>
+                    </li>
+                    <li>
+                        <p>Note that you must unset your own param as perpage. Just you can set page param for
+                            paginate this param ignore from filter.</p>
+                    </li>
+                    </ul>
+                    <p>You can ignore some request param by use of code it</p>
+                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">
+User::ignoreRequest(['perpage'])->filter()->paginate(request()->get('perpage'), ['*'], 'page');
+                        </pre>
+                    </div>
+                    </p>
+                    <p>Call <code>ignoreRequest</code> will ignore some request that you don't want to use in
+                        conditions eloquent filter.
+                        For example perpage param will never be in the conditions eloquent filter. it's releated to
+                        paginate method.
+                        <code>page</code> param ignore by default in the Eloquent filter.</p>
+                </div>
+
+
+                <div>
+
+                    <div class="subheading mb-3">
+                        Simple Examples
+                    </div>
+                    <p>
+                        You just pass data blade form to query string or generate query string in controller
+                        method.For example:
+
+                    </p>
+
+                    <div>
+
+                        <h5>Simple Where
+
+                        </h5>
+
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?email=mehdifathi.developer@gmail.com
+
+SELECT ... WHERE ... email = 'mehdifathi.developer@gmail.com'
+</pre>
+                        </div>
+                        <br>
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?first_name=mehdi&last_name=fathi
+
+SELECT ... WHERE ... first_name = 'mehdi' AND last_name = 'fathi'
+</pre>
+                        </div>
+                        <br>
+
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?username[]=ali&username[]=ali22&family=ahmadi
+
+SELECT ... WHERE ... username = 'ali' OR username = 'ali22' AND family = 'ahmadi'
+</pre>
+                        </div>
+
+                    </div>
+
+                    <br>
+                    <div>
+
+                        <h5>
+                            Where like
+                        </h5>
+
+                        <span>
+                                If you are going to make query by like conditions. You can do it that by this example.
+                                <br>
+                            </span>
+
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?first_name[like]=%John%
+
+SELECT ... WHERE ... first_name LIKE '%John%'
+</pre>
+                        </div>
+
+
+                    </div>
+                    <br>
+
+                    <div>
+
+                        <h5>
+                            Where by operator
+                        </h5>
+
+                        <span>
+                                You can set any operator mysql in query string.
+                                <br>
+                                <br>
+                            </span>
+
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?count_posts[operator]=>&count_posts[value]=35
+
+SELECT ... WHERE ... count_posts > 35
+</pre>
+                        </div>
+
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?username[operator]=!=&username[value]=ali
+
+SELECT ... WHERE ... username != 'ali'
+</pre>
+                        </div>
+
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?count_posts[operator]=<&count_posts[value]=25
+
+SELECT ... WHERE ... count_posts < 25
+</pre>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <br>
+                    <div class="subheading mb-3">
+                        Where nested relation Model (New feature 🔥)
+                    </div>
+                    <p>
+                        You can set all nested relation in the query string just by the array query string. For
+                        example, the user model has a relation with posts. and posts table has a relation with
+                        orders. You can make query condition by set 'posts[count_post]' and 'posts[orders][name]' in
+                        the query string. Just be careful you must set 'posts.count_post' and 'posts.orders.name' in
+                        the User model.
+                    </p>
+
+                    <!-- HTML generated using hilite.me -->
+                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
+
+class User extends Model
+{
+    use Filterable;
+
+    private static $whiteListFilter =[
+        'username',
+        'posts.count_post',
+        'posts.orders.name',
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function posts()
+    {
+        return $this->belongsTo('Tests\Models\Post');
+    }
+
+}
+</pre>
+                    </div>
+                    <br>
+
+
+                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">
+/users/list?posts[count_post]=876&username=mehdi
+
+select * from "users" where exists
+         (select * from "posts" where
+         "posts"."user_id" = "users"."id"
+         and "posts"."count_post" = 876)
+         and "username" = "mehdi"
+                        </pre>
+                    </div>
+
+                    <ul>
+                        <li>The above example as the same code that you use without the eloquent filter. Check it
+                            under code
+                        </li>
+                    </ul>
+
+                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                            style="margin: 0; line-height: 125%">
+$user = new User();
+$builder = $user->with('posts');
+        $builder->whereHas('posts', function ($q) {
+            $q->where('count_post', 876);
+        })->where('username','mehdi');
+                        </pre>
+                    </div>
+                </div>
+
+
+                <div>
+
+                    <div class="subheading mb-3">
+                        Special Params
+                    </div>
+                    <p>You can set special params <code>limit</code> and <code>orderBy</code> in query string for
+                        make query by that.</p>
+
+                    <div>
+
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?f_params[limit]=1
+
+SELECT ... WHERE ... order by `id` desc limit 1 offset 0
+</pre>
+                        </div>
+                        <br>
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?f_params[orderBy][field]=id&f_params[orderBy][type]=ASC
+
+SELECT ... WHERE ... order by `id` ASC limit 10 offset 0
+</pre>
+                        </div>
+                        <br>
+
+                    </div>
+
+                    <br>
+                    <div>
+
+                        <h5>
+                            Where like
+                        </h5>
+
+                        <span>
+                                If you are going to make query by like conditions. You can do it that by this example.
+                                <br>
+                            </span><br>
+
+
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?first_name[like]=%John%
+
+SELECT ... WHERE ... first_name LIKE '%John%'
+</pre>
+                        </div>
+
+
+                    </div>
+                    <br>
+
+                    <div>
+
+                        <h5>
+                            Where between
+                        </h5>
+
+                        <span>
+                                <p>If you are going to make query whereBetween.You must fill keys <code>start</code> and <code>end</code> in query string.
+you can set it on query string as you know. this params is good fit for filter by date.</p>
+                            </span>
+
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?created_at[start]=2016/05/01&created_at[end]=2017/10/01
+
+SELECT ... WHERE ... created_at BETWEEN '2016/05/01' AND '2017/10/01'
+</pre>
+                        </div>
+                        <br>
+
+                        <h5>
+                            Advanced Where
+
+                        </h5>
+                        <br>
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?count_posts[operator]=>&count_posts[value]=10&username[]=ali&username[]=mehdi&family=ahmadi&
+                                created_at[start]=2016/05/01&created_at[end]=2020/10/01
+&f_params[orderBy][field]=id&f_params[orderBy][type]=ASC
+
+select * from `users` where `count_posts` > 10 and `username` in ('ali', 'mehdi') and
+`family` = ahmadi and `created_at` between '2016/05/01' and '2020/10/01' order by 'id' asc limit 10 offset 0
+</pre>
+                        </div>
+                        <br>
+
+                        <span>Just fields of query string be same rows table database in <code>$whiteListFilter</code>
+                                in your model or declare method in your model as override method.
+                                Override method can be considered custom query filter.</span>
+
+
+                    </div>
+
+                    <div>
+
+                        <br>
+                        <div class="subheading mb-3">
+                            Custom query filter
+                        </div>
+                        <p>
+                            If you are going to make yourself query filter you can do it easily.You just make a trait
+                            and
+                            use it on model:
+
+
+                        </p>
+
+                        <!-- HTML generated using hilite.me -->
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+use Illuminate\Database\Eloquent\Builder;
+
+/**
+ * Trait usersFilter.
+ */
+trait usersFilter
+{
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param                                       $value
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function username_like(Builder $builder, $value)
+    {
+        return $builder->where('username', 'like', '%'.$value.'%');
+    }
+}
+</pre>
+                        </div>
+                        <br>
+                        <span>
+                        Note that fields of query string be same methods of trait.Use trait in your model:
+                    </span>
+
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+/users/list?username_like=a
+
+select * from `users` where `username` like %a% order by `id` desc limit 10 offset 0
+                        </pre>
+                        </div>
+                        <br>
+
+                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
+                                style="margin: 0; line-height: 125%">
+class User extends Model
+{
+    use usersFilter,Filterable;
+
+    protected $table = 'users';
+    protected $guarded = [];
+    private static $whiteListFilter =[
+        'id',
+        'username',
+        'email',
+        'created_at',
+        'updated_at',
+    ];
+
+}
+                        </pre>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </section>
+
+    <hr class="m-0"/>
+    <!-- Basic Usage-->
+    <hr class="m-0"/>
+    <!-- Skills-->
+    <hr class="m-0"/>
+    <!-- Interests-->
+    <hr class="m-0"/>
+    <!-- Awards-->
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+</body>
+</html>
