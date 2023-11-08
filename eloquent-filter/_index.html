@@ -1,265 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Eloquent filter</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
-          type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #eee;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 1em;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.5em;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f8f8f8;
+        }
+    </style>
 </head>
-<body id="page-top">
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top"
-    ><span class="d-block d-lg-none"></span>
-        <span class="d-none d-lg-block">
-<!--            <img class="img-fluid img-profile rounded-circle mx-auto mb-2"-->
-            <!--                                             src="assets/img/profile.jpg" alt=""/>-->
-        </span></a
-    >
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-            class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Instalation">Instalation</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#BasicUsage">Basic Usage</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
-        </ul>
-    </div>
-</nav>
-<!-- Page Content-->
-<div class="container-fluid p-0">
-    <!-- About-->
-    <section class="resume-section" id="about"
-             style="background-image: url('https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/master/eloquent-filter.jpg');background-size: cover">
-        <div class="resume-section-content">
-            <h1 class="mb-10">Eloquent <span class="text-primary">Filter</span></h1>
-            <br>
-            <div style="background-color: white;opacity: 0.6">
+<body>
+<div class="container">
+    <h1 id="eloquentfilterahrefhttpstwittercomintenttweettexteloquent20filter20adds20custom20filters20to20your20eloquent20models20in20laravel26url3dhttps3a2f2fgithubcom2fmehdi-fathi2feloquent-filter26via3dmehdi-fathi26hashtags3dlaravel2celoquent2cphp2cmysql2cdatabase2celoquentfilterimgsrchttpsimgshieldsiotwitterurlhttpshieldsiosvgstylesocialalttweeta">
+        Eloquent Filter <a
+            href="https://twitter.com/intent/tweet?text=Eloquent%20Filter%20adds%20custom%20filters%20to%20your%20Eloquent%20Models%20in%20Laravel%26url%3Dhttps%3A%2F%2Fgithub.com%2Fmehdi-fathi%2Feloquent-filter%26via%3Dmehdi-fathi%26hashtags%3Dlaravel%2Celoquent%2Cphp%2Cmysql%2Cdatabase%2Celoquentfilter"><img
+            src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Tweet"/></a></h1>
+    <p><img src="https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/develop/eloquent-filter.png" alt="alt text" title="eloquent-filter"/></p>
+    <p><a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter"><img
+            src="https://img.shields.io/packagist/v/mehdi-fathi/eloquent-filter" alt="Latest Stable Version"/></a>
+        <img src="https://github.com/mehdi-fathi/eloquent-filter/workflows/Run%20tests/badge.svg?branch=master"
+             alt="Run tests"/>
+        <a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter"><img
+                src="https://poser.pugx.org/mehdi-fathi/eloquent-filter/license" alt="License"/></a>
+        <a href="https://github.com/mehdi-fathi/eloquent-filter/stargazers"><img
+                src="https://img.shields.io/github/stars/mehdi-fathi/eloquent-filter" alt="GitHub stars"/></a>
+        <a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter"><img
+                src="https://img.shields.io/packagist/dm/mehdi-fathi/eloquent-filter?color=blue"
+                alt="Monthly Downloads"/></a>
+        <a href="https://scrutinizer-ci.com/g/mehdi-fathi/eloquent-filter/?branch=master"><img
+                src="https://scrutinizer-ci.com/g/mehdi-fathi/eloquent-filter/badges/quality-score.png?b=master"
+                alt="Scrutinizer Code Quality"/></a>
+        <a href="https://codecov.io/gh/mehdi-fathi/eloquent-filter"><img
+                src="https://codecov.io/gh/mehdi-fathi/eloquent-filter/branch/develop/graph/badge.svg?token=QY9HA6NXFH"
+                alt="codecov"/></a></p>
+    <p>Eloquent Filter is a robust Laravel package providing an intuitive way to filter your Eloquent models using query
+        strings.
+        Perfect for crafting responsive APIs and complex data sets, this package seamlessly integrates with Laravel's
+        existing Eloquent models,
+        adding powerful and dynamic filtering capabilities with minimal setup.</p>
+    <p>Features:</p>
+    <ul>
+        <li>Support for complex query structures</li>
+        <li>Easy to override conditions for custom behavior</li>
+        <li>Harmonious integration with Laravel and Eloquent, including query builders</li>
+        <li>Full control over filter execution and customization</li>
+    </ul>
+    <p>We've tailored Eloquent Filter to be as flexible as you need—whether your queries are straightforward or complex.
+        With an extensive feature set, you can implement specific functionalities unique to your application with
+        ease.</p>
+    <p><strong>Note</strong> We considered what predictable features you wanted to implement no matter simple or
+        complex,
+        although we have a lot of features to make able you to implement your specific something's else.</p>
+    <h2 id="tableofcontent">Table of Content</h2>
+    <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#basic-usage">Basic Usage</a>
+            <ul>
+                <li><a href="#config-model-and-set-whitelist">Config Model</a></li>
+                <li><a href="#use-in-controller">Use in Controller</a></li>
+                <li><a href="#simple-examples">Simple Examples</a></li>
+                <li><a href="#custom-query-filter">Custom Query Filter</a></li>
+                <li><a href="#custom-detection-condition">Custom Detection Condition</a></li>
+            </ul>
+        </li>
+        <li><a href="#configuring">Configuring</a>
+            <ul>
+                <li><a href="#publish-config">Publish Config</a></li>
+                <li><a href="#config">Config</a></li>
+                <li><a href="#alias">Alias</a></li>
+            </ul>
+        </li>
+        <li><a href="#query-builder">Query Builder</a>
+            <ul>
+                <li><a href="#db-introduction">Introduction</a></li>
+            </ul>
+        </li>
+        <li><a href="#magic-methods">Magic Methods</a>
+            <ul>
+                <li><a href="#request-filter">Request Filter</a></li>
+                <li><a href="#response-filter">Response Filter</a></li>
+                <li><a href="#macro-Methods">Macro Methods</a></li>
+                <li><a href="#black-list-detections">Black List Detections</a></li>
+            </ul>
+        </li>
+    </ul>
+    <h2 id="requirements">Requirements</h2>
+    <ul>
+        <li>PHP 8.0,8.1,8.2</li>
+        <li>Laravel 8.x,9.x,10.x(New)</li>
+    </ul>
+    <h3 id="versioninformation">Version information</h3>
+    <p>The Eloquent Filter has reached more than 100,000 installations recently, so I made a decision to release version
+        4.0 with 2 new features.</p>
+    <p>The current version supports:</p>
+    <ul>
+        <li>Support query builder along with eloquent</li>
+        <li>Set a specific name fo custom methods</li>
+    </ul>
+    <table>
+        <thead>
+        <tr>
+            <th>Version</th>
+            <th>Illuminate</th>
+            <th>Status</th>
+            <th>PHP Version</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>^4.0</td>
+            <td>4.x.x - 4.x.x</td>
+            <td>Active support</td>
+            <td>&gt;= 8.0</td>
+        </tr>
+        <tr>
+            <td>^3.0</td>
+            <td>3.2.x - 3.4.x</td>
+            <td>End of life</td>
+            <td>&gt;= 8.0</td>
+        </tr>
+        <tr>
+            <td>^3.0</td>
+            <td>3.0.0 - 3.0.5</td>
+            <td>End of life</td>
+            <td>&gt;= 7.4.0</td>
+        </tr>
+        <tr>
+            <td>^2.0</td>
+            <td>2.0.0 - 2.6.7</td>
+            <td>End of life</td>
+            <td>&lt;= 7.4.0</td>
+        </tr>
+        </tbody>
+    </table>
+    <h2 id="introduction">Introduction</h2>
+    <p>Conceivably, you would face challenges if you've done a task as an end-point in which there are some queries with
+        many advanced options.</p>
+    <p>Let's say we want to make an advanced search page with multiple filter options.</p>
+    <p>
+        <img src="https://raw.githubusercontent.com/mehdi-fathi/mehdi-fathi.github.io/master/eloquent-filter/assets/img/Esfand-05-1399%2022-23-21.gif"
+             alt="alt text" title="sample 1 eloquent-filter"/></p>
+    <h3 id="asimpleimplementationwithouteloquentfilter">A simple implementation without Eloquent Filter</h3>
+    <p>The Resource URI would be look like:
+        /users/index?age_more_than=25&amp;gender=male&amp;created_at=25-09-2019</p>
+    <p>And a simple implementation in the Controller would look like :</p>
+    <pre><code class="language-php">&lt;?php
 
-                <p class="lead mb-5 font-italic" style="color: #170000">
-                    A package for filter data of models by query string. Easy to use and full dynamic.
-                    You can generate full dynamic query with the query string.
-                    The eloquent filter is perfect for making filter or search pages.
-                    <br>
-                    The Eloquent Filter is stable on PHP 7.1,7.2,7.3,7.4 and Laravel 5.x,6.x,7.x.
+namespace App\Http\Controllers;
 
-                </p>
-            </div>
+use App\User;
+use Illuminate\Http\Request;
 
-            <div class="social-icons">
-                <a class="social-icon" href="https://github.com/mehdi-fathi/eloquent-filter"><i
-                        class="fab fa-github"></i></a>
-                <a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter">
+class UserController extends Controller
+{
+    public function index(Request $request)
+    {
+        $users = User::where('is_active', true);
 
-                    <img src="https://poser.pugx.org/mehdi-fathi/eloquent-filter/downloads"/>
-                </a>
-                <a href="https://github.com/mehdi-fathi/eloquent-filter">
+        if ($request-&gt;has('age_more_than')) {
+            $users-&gt;where('age', '&gt;', $request-&gt;age_more_than);
+        }
 
-                    <img src="https://travis-ci.org/mehdi-fathi/eloquent-filter.svg?branch=master"/>
-                </a>
-                <a href="https://github.com/mehdi-fathi/eloquent-filter">
-                    <img src="https://img.shields.io/github/stars/mehdi-fathi/eloquent-filter"/>
-                </a>
-                <img src="https://github.com/mehdi-fathi/eloquent-filter/workflows/Run%20tests/badge.svg?branch=master"/>
-                <a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter">
+        if ($request-&gt;has('gender')) {
+            $users-&gt;where('gender', $request-&gt;gender);
+        }
 
-                    <img src="https://poser.pugx.org/mehdi-fathi/eloquent-filter/v/stable"/>
-                </a>
+        if ($request-&gt;has('created_at')) {
+            $users-&gt;where('created_at','&gt;=', $request-&gt;created_at);
+        }
 
+        return json_encode($users-&gt;get());
+    }
+}
+</code></pre>
+    <p>This solution is simple and that works well but not for an enterprise project.
+        But you'd have to add a condition for each filter you need.
+        Especially if you would make more complex filtering, your code can become a monster quickly! :boom:</p>
+    <p>Hence, Eloquent Filter is ready for to you get rid of complexity in addition to saving time.</p>
+    <h3 id="asimpleimplementationwitheloquentfilter">A simple implementation with Eloquent Filter</h3>
+    <p>Eloquent Filter can help you to fix that ``problem. Just you will set query string to work with that.
+        It would make your own query automatically and systematically while you can control them.</p>
+    <p>Right After installing Eloquent Filter, the request URI would be like this:
+        /users/list?age_more_than[operator]=&gt;&amp;age[value]=35&amp;gender=male&amp;created_at[operator]==&gt;&amp;created_at[value]=25-09-2019</p>
+    <p>And in the Controller, You just need that one line:</p>
+    <pre><code class="language-php">/**
+ * Class UsersController.
+ */
 
-            </div>
-        </div>
-    </section>
-    <hr class="m-0"/>
-    <!-- Experience-->
-    <section class="resume-section" id="Instalation">
-        <div class="resume-section-content">
-            <h2 class="mb-5">Instalation</h2>
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="flex-grow-1">
-                    <h4 class="mb-0">1- Run the Composer command</h4>
+namespace App\Http\Controllers;
 
-                    <p>
-                        For install just run this command:
-                    </p>
-                    <p>
-                        <!-- HTML generated using hilite.me -->
-                    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">  <span
-                            style="color: #FF0000; background-color: #FFAAAA">$</span> composer require mehdi<span
-                            style="color: #333333">-</span>fathi<span style="color: #333333">/</span>eloquent<span
-                            style="color: #333333">-</span>filter
-</pre>
-                    </div>
+use App\User;
 
-                    </p>
-                </div>
-            </div>
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="flex-grow-1">
-                    <h4 class="mb-0">2- Add ServiceProvider</h4>
-                    <br>
-
-                    <span>
-                        Add eloquentFilter\ServiceProvider::class to provider app.php
-                    </span>
-
-                    <p>
-
-
-                        <!-- HTML generated using hilite.me -->
-                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">
-
-'providers' => [
+class UsersController
+{
+    public function list()
+    {
+        return User::filter()-&gt;get();
+    }
+}
+</code></pre>
+    <p>By Eloquent filter implementation, you can use all the documented filters!</p>
+    <h2 id="installation">Installation</h2>
+    <p>1- Run the following command in your project directory to add the Eloquent Filter as a dependency</p>
+    <pre><code>    $ composer require mehdi-fathi/eloquent-filter
+  </code></pre>
+    <ul>
+        <li><p><strong>Note</strong> for Laravel versions older than 5.8 you should install version 2.2.5</p>
+            <pre><code>  $ composer require mehdi-fathi/eloquent-filter:2.2.5</code></pre>
+        </li>
+        <li><p><strong>Note</strong> We support auto-discovery but you can check them.</p>
+        </li>
+    </ul>
+    <p>2- Add <code>eloquentFilter\ServiceProvider::class</code> to provider app.php</p>
+    <pre><code class="language-php">'providers' =&gt; [
   /*
    * Package Service Providers...
    */
     eloquentFilter\ServiceProvider::class
-],
-</pre>
-                    </div>
-                    </p>
-
-                </div>
-            </div>
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="flex-grow-1">
-                    <h4 class="mb-0">3- Add Facade </h4>
-                    <br>
-                    <p>
-                        Add Facade 'EloquentFilter' => eloquentFilter\Facade\EloquentFilter::class to aliases app.php
-                    </p>
-
-                    <p>
-
-
-                        <!-- HTML generated using hilite.me -->
-                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">
-
-'alias' => [
+]
+</code></pre>
+    <p>3- Add Facade <code>'EloquentFilter' =&gt; eloquentFilter\Facade\EloquentFilter::class</code> to aliases app.php
+    </p>
+    <pre><code class="language-php">'alias' =&gt; [
   /*
    * Facade alias...
    */
-    'EloquentFilter' => eloquentFilter\Facade\EloquentFilter::class,
+    'EloquentFilter' =&gt; eloquentFilter\Facade\EloquentFilter::class,
 ],
-</pre>
-                    </div>
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="resume-section" id="BasicUsage">
-        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-            <div class="flex-grow-1">
-                <h3 class="mb-0">Basic Usage
-                </h3>
-                <div>
-
-                    <div class="subheading mb-3">Config your model</div>
-                    <p>
-                        Add Filterable trait to your models and set fields that you will want filter in
-                        whitelist.You
-                        can override this method in your models.
-                    </p>
-
-                    <!-- HTML generated using hilite.me -->
-                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">use eloquentFilter\QueryFilter\ModelFilters\Filterable;
+</code></pre>
+    <p>That's it enjoy! :boom:</p>
+    <h2 id="basicusage">Basic Usage</h2>
+    <h3 id="configmodelandsetwhitelist">Config Model and set whitelist</h3>
+    <p>Add the <code>Filterable</code> trait to yourself models and set fields in the whitelist array in which you will
+        want to use of filter .
+        You can override this method in your models as well.</p>
+    <pre><code class="language-php">use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class User extends Model
 {
     use Filterable;
-
+    
     private static $whiteListFilter =[
-        &#39;id&#39;,
-        &#39;username&#39;,
-        &#39;email&#39;,
-        &#39;created_at&#39;,
-        &#39;updated_at&#39;,
+        'id',
+        'username',
+        'email',
+        'created_at',
+        'updated_at',
     ];
 }
-</pre>
-                    </div>
-                    <br>
-                    <p>
-                        You can set * char for filter in all fields as like below example:
-
-                    </p>
-
-                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">
-private static $whiteListFilter = ['*'];
-                    </pre>
-                    </div>
-                    <br>
-                    <p>You can add or set <code>$whiteListFilter</code> on the fly in your method.For example:</p>
-
-                </div>
-
-                <div>
-
-                    <div class="subheading mb-3">
-                        Set array to WhiteListFilter
-                    </div>
-                    <p>
-                        Note that this method override $whiteListFilter
-                    </p>
-
-                    <!-- HTML generated using hilite.me -->
-                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">
-User::setWhiteListFilter(['name']);
-</pre>
-                    </div>
-                    <br>
-                    <p>
-                        You can set * char for filter in all fields as like below example:
-
-                    </p>
-
-                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">
-private static $whiteListFilter = ['*'];
-                    </pre>
-                    </div>
-                    <br>
-                    <p>You can add or set <code>$whiteListFilter</code> on the fly in your method.For example:</p>
-
-                </div>
-
-
-                <div>
-
-                    <div class="subheading mb-3">
-                        Use in your controller
-                    </div>
-                    <p>
-                        Change your code on controller as like below example:
-
-                    </p>
-
-                    <!-- HTML generated using hilite.me -->
-                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">
+</code></pre>
+    <ul>
+        <li>You can set <code>*</code> char for that filter in all fields aslike below example:</li>
+    </ul>
+    <pre><code class="language-php">private static $whiteListFilter = ['*'];
+</code></pre>
+    <p>You able add or set <code>$whiteListFilter</code> on the fly in your method. For example:</p>
+    <p><em><strong>Set array to WhiteListFilter</strong></em></p>
+    <ul>
+        <li><strong>Note</strong> This method override <code>$whiteListFilter</code> array</li>
+    </ul>
+    <pre><code class="language-php">User::setWhiteListFilter(['name']);
+</code></pre>
+    <p><em><strong>Add new field to WhiteListFilter</strong></em></p>
+    <pre><code class="language-php">User::addWhiteListFilter('name');
+</code></pre>
+    <h3 id="useincontroller">Use in Controller</h3>
+    <p>Change your code the controller of the laravel project as like below example:</p>
+    <pre><code class="language-php">
 namespace App\Http\Controllers;
 
 /**
@@ -270,191 +340,122 @@ class UsersController
 
     public function list()
     {
-          if (!empty(request()->get('username'))) {
-
-              $users = User::ignoreRequest('perpage')->filter()->with('posts')
-                        ->orderByDesc('id')->paginate(request()->get('perpage'),['*'],'page');
+          if (!empty(request()-&gt;get('username'))) {
+          
+              $users = User::ignoreRequest('perpage')
+                        -&gt;filter()
+                        -&gt;with('posts')
+                        -&gt;orderByDesc('id')
+                        -&gt;paginate(request()-&gt;get('perpage'),['*'],'page');
 
           } else {
               $users = User::filter(
-                ['username' => ['mehdi','ali']]
-                )->with('posts')->orderByDesc('id')->paginate(10,['*'],'page');
+                ['username' =&gt; ['mehdi','ali']]           
+                )-&gt;with('posts')
+                -&gt;orderByDesc('id')
+                -&gt;paginate(10,['*'],'page');
           }
     }
 }
-</pre>
-                    </div>
-
-                    <br>
-                    <p>
-                        <ul>
-                            <li>
-                    <p>Note that Eloquent filter by default using query string to make query. Also you can set array
-                        to <code>filter</code> method Model for make
-                        your own custom condition without querystring.</p>
-                    </li>
-                    <li>
-                        <p>Note that you must unset your own param as perpage. Just you can set page param for
-                            paginate this param ignore from filter.</p>
-                    </li>
-                    </ul>
-                    <p>You can ignore some request param by use of code it</p>
-                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">
-User::ignoreRequest(['perpage'])->filter()->paginate(request()->get('perpage'), ['*'], 'page');
-                        </pre>
-                    </div>
-                    </p>
-                    <p>Call <code>ignoreRequest</code> will ignore some request that you don't want to use in
-                        conditions eloquent filter.
-                        For example perpage param will never be in the conditions eloquent filter. it's releated to
-                        paginate method.
-                        <code>page</code> param ignore by default in the Eloquent filter.</p>
-                </div>
-
-
-                <div>
-
-                    <div class="subheading mb-3">
-                        Simple Examples
-                    </div>
-                    <p>
-                        You just pass data blade form to query string or generate query string in controller
-                        method.For example:
-
-                    </p>
-
-                    <div>
-
-                        <h5>Simple Where
-
-                        </h5>
-
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?email=mehdifathi.developer@gmail.com
+</code></pre>
+    <p>-<strong>Note</strong> The Eloquent Filter config by default uses the query string to make queries in Laravel.
+        Although, you can set the collection data in the <code>filter</code> method Model for making your own custom
+        condition without query string.</p>
+    <p>-<strong>Note</strong> Therefore you must unset yourself param as perpage. Just you can set page param for
+        paginate this param ignore from the filter.</p>
+    <ul>
+        <li>You can ignore some request params via use of the bellow code.</li>
+    </ul>
+    <pre><code class="language-php">
+User::ignoreRequest(['perpage'])
+            -&gt;filter()
+            -&gt;paginate(request()-&gt;get('perpage'), ['*'], 'page');
+</code></pre>
+    <p>Call <code>ignoreRequest</code> that will ignore some requests that you don't want to use in conditions of
+        eloquent filter.
+        e.g: the perpage param will never be in the conditions eloquent filter.
+        it's related to the paginate method. <code>page</code> param ignore by default in Eloquent Filter of Laravel.
+    </p>
+    <ul>
+        <li>You can filter some request params as acceptable filter.</li>
+    </ul>
+    <pre><code class="language-php">
+User::AcceptRequest(['username','id'])
+            -&gt;filter()
+            -&gt;paginate(request()-&gt;get('perpage'), ['*'], 'page');
+</code></pre>
+    <p>Call <code>AcceptRequest</code> will accept requests in which you want to use in conditions Eloquent Filter.
+        e.g: <code>username</code> and <code>id</code> key will be in the conditions eloquent filter.</p>
+    <p>-<strong>Note</strong> Just in case, you must set <code>$whiteListFilter</code> in Models. Aim of the method
+        avert to manipulation query string by a bad user.</p>
+    <h3 id="simpleexamples">Simple Examples</h3>
+    <p>You just pass data form as query string. For example:</p>
+    <p><strong>Simple Where</strong></p>
+    <pre><code>/users/list?email=mehdifathi.developer@gmail.com
 
 SELECT ... WHERE ... email = 'mehdifathi.developer@gmail.com'
-</pre>
-                        </div>
-                        <br>
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?first_name=mehdi&last_name=fathi
+</code></pre>
+    <pre><code>/users/list?first_name=mehdi&amp;last_name=fathi
 
 SELECT ... WHERE ... first_name = 'mehdi' AND last_name = 'fathi'
-</pre>
-                        </div>
-                        <br>
+</code></pre>
+    <ul>
+        <li>If you send date format <code>Y-m-d</code> we will work like <code>WhereDate()</code> method Laravel.</li>
+    </ul>
+    <p><em><strong>Where In</strong></em></p>
+    <p>This example make method <code>whereIn</code>.</p>
+    <pre><code>/users/list?username[]=ali&amp;username[]=ali22&amp;family=ahmadi
 
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?username[]=ali&username[]=ali22&family=ahmadi
+SELECT ... WHERE ... username in ('ali','ali22') AND family = 'ahmadi'
+</code></pre>
+    <p><em><strong>OrWhere</strong></em></p>
+    <p>This example make method <code>orWhere()</code>.</p>
+    <pre><code>/users/list?name=mehdi&amp;username=fathi&amp;or[username]=ali
 
-SELECT ... WHERE ... username = 'ali' OR username = 'ali22' AND family = 'ahmadi'
-</pre>
-                        </div>
-
-                    </div>
-
-                    <br>
-                    <div>
-
-                        <h5>
-                            Where like
-                        </h5>
-
-                        <span>
-                                If you are going to make query by like conditions. You can do it that by this example.
-                                <br>
-                            </span>
-
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?first_name[like]=%John%
+SELECT ... WHERE ... name = 'mehdi' AND username = 'fathi' or username = 'ali'
+</code></pre>
+    <p><em><strong>Where like</strong></em></p>
+    <p>If you are going to make a query by like conditions. You can do that by this example.</p>
+    <pre><code>/users/list?first_name[like]=%John%
 
 SELECT ... WHERE ... first_name LIKE '%John%'
-</pre>
-                        </div>
 
+</code></pre>
+    <p><em><strong>Where by operator</strong></em></p>
+    <p>You can set any operator mysql in the queries string.</p>
+    <pre><code>/users/list?count_posts[operator]=&gt;&amp;count_posts[value]=35
 
-                    </div>
-                    <br>
-
-                    <div>
-
-                        <h5>
-                            Where by operator
-                        </h5>
-
-                        <span>
-                                You can set any operator mysql in query string.
-                                <br>
-                                <br>
-                            </span>
-
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?count_posts[operator]=>&count_posts[value]=35
-
-SELECT ... WHERE ... count_posts > 35
-</pre>
-                        </div>
-
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?username[operator]=!=&username[value]=ali
+SELECT ... WHERE ... count_posts &gt; 35
+</code></pre>
+    <pre><code>/users/list?username[operator]=!=&amp;username[value]=ali
 
 SELECT ... WHERE ... username != 'ali'
-</pre>
-                        </div>
+</code></pre>
+    <pre><code>/users/list?count_posts[operator]=&lt;&amp;count_posts[value]=25
 
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?count_posts[operator]=<&count_posts[value]=25
-
-SELECT ... WHERE ... count_posts < 25
-</pre>
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-                <div>
-
-                    <br>
-                    <div class="subheading mb-3">
-                        Where nested relation Model (New feature 🔥)
-                    </div>
-                    <p>
-                        You can set all nested relation in the query string just by the array query string. For
-                        example, the user model has a relation with posts. and posts table has a relation with
-                        orders. You can make query condition by set 'posts[count_post]' and 'posts[orders][name]' in
-                        the query string. Just be careful you must set 'posts.count_post' and 'posts.orders.name' in
-                        the User model.
-                    </p>
-
-                    <!-- HTML generated using hilite.me -->
-                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">
-use eloquentFilter\QueryFilter\ModelFilters\Filterable;
+SELECT ... WHERE ... count_posts &lt; 25
+</code></pre>
+    <p><strong>Where the nested relations Model</strong></p>
+    <p>You can set all nested relations in the query string just via the array of query string. imagine, the user model
+        has a relation with posts.
+        And posts table has a relation with orders table.</p>
+    <p>You can make query conditions by set <code>posts[count_post]</code> and <code>posts[orders][name]</code> in the
+        query string.</p>
+    <ul>
+        <li>Just be careful you must set <code>posts.count_post</code> and <code>posts.orders.name</code> in the User
+            model.
+        </li>
+    </ul>
+    <pre><code class="language-php">use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class User extends Model
 {
     use Filterable;
-
+   
     private static $whiteListFilter =[
         'username',
         'posts.count_post',
+        'posts.category',
         'posts.orders.name',
     ];
 
@@ -463,204 +464,117 @@ class User extends Model
      */
     public function posts()
     {
-        return $this->belongsTo('Tests\Models\Post');
+        return $this-&gt;belongsTo('Models\Post');
     }
 
 }
-</pre>
-                    </div>
-                    <br>
+</code></pre>
+    <pre><code>/users/list?posts[count_post]=876&amp;username=mehdi
 
+select * from &quot;users&quot; where exists 
+         (select * from &quot;posts&quot; where &quot;posts&quot;.&quot;user_id&quot; = &quot;users&quot;.&quot;id&quot; 
+         and &quot;posts&quot;.&quot;count_post&quot; = 876)
+         and &quot;username&quot; = &quot;mehdi&quot;
+</code></pre>
+    <ul>
+        <li>The above example is the same code that you used without the eloquent filter. Check it under code. It's not
+            amazing?
+        </li>
+    </ul>
+    <pre><code class="language-php">$builder = (new User())-&gt;with('posts');
+        $builder-&gt;whereHas('posts', function ($q) {
+            $q-&gt;where('count_post', 876);
+        })-&gt;where('username','mehdi');
 
-                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">
-/users/list?posts[count_post]=876&username=mehdi
+</code></pre>
+    <p><em><strong>Where array the nested relation Model</strong></em></p>
+    <p>You can pass array to make whereIn condition.</p>
+    <pre><code>/users/list?posts[category][]=php&amp;posts[category][]=laravel&amp;posts[category][]=jquery&amp;username=mehdi
 
-select * from "users" where exists
-         (select * from "posts" where
-         "posts"."user_id" = "users"."id"
-         and "posts"."count_post" = 876)
-         and "username" = "mehdi"
-                        </pre>
-                    </div>
-
-                    <ul>
-                        <li>The above example as the same code that you use without the eloquent filter. Check it
-                            under code
-                        </li>
-                    </ul>
-
-                    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                            style="margin: 0; line-height: 125%">
-$user = new User();
-$builder = $user->with('posts');
-        $builder->whereHas('posts', function ($q) {
-            $q->where('count_post', 876);
-        })->where('username','mehdi');
-                        </pre>
-                    </div>
-                </div>
-
-
-                <div>
-
-                    <div class="subheading mb-3">
-                        Special Params
-                    </div>
-                    <p>You can set special params <code>limit</code> and <code>orderBy</code> in query string for
-                        make query by that.</p>
-
-                    <div>
-
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?f_params[limit]=1
+select * from &quot;users&quot; where exists 
+         (select * from &quot;posts&quot; where 
+         &quot;posts&quot;.&quot;category&quot; in ('php','laravel','jquery') )
+         and &quot;username&quot; = &quot;mehdi&quot;
+</code></pre>
+    <p>****Special Params****</p>
+    <p>You can set special params <code>limit</code> and <code>orderBy</code> in the query string to make a query by
+        that.</p>
+    <pre><code>/users/list?f_params[limit]=1
 
 SELECT ... WHERE ... order by `id` desc limit 1 offset 0
-</pre>
-                        </div>
-                        <br>
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?f_params[orderBy][field]=id&f_params[orderBy][type]=ASC
+</code></pre>
+    <pre><code>/users/list?f_params[orderBy][field]=id&amp;f_params[orderBy][type]=ASC
 
-SELECT ... WHERE ... order by `id` ASC limit 10 offset 0
-</pre>
-                        </div>
-                        <br>
+SELECT ... WHERE ... order by `id` asc
+</code></pre>
+    <pre><code>/users/list?f_params[orderBy][field]=id,count_posts&amp;f_params[orderBy][type]=ASC
 
-                    </div>
-
-                    <br>
-                    <div>
-
-                        <h5>
-                            Where like
-                        </h5>
-
-                        <span>
-                                If you are going to make query by like conditions. You can do it that by this example.
-                                <br>
-                            </span><br>
-
-
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?first_name[like]=%John%
-
-SELECT ... WHERE ... first_name LIKE '%John%'
-</pre>
-                        </div>
-
-
-                    </div>
-                    <br>
-
-                    <div>
-
-                        <h5>
-                            Where between
-                        </h5>
-
-                        <span>
-                                <p>If you are going to make query whereBetween.You must fill keys <code>start</code> and <code>end</code> in query string.
-you can set it on query string as you know. this params is good fit for filter by date.</p>
-                            </span>
-
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?created_at[start]=2016/05/01&created_at[end]=2017/10/01
+SELECT ... WHERE ...  order by `id` asc, `count_posts` asc
+</code></pre>
+    <p><em><strong>Where between</strong></em></p>
+    <p>If you are going to make a query based on date, You must fill keys, <code>start</code>, and <code>end</code> in
+        the query string.
+        Hence You can set it as a query string. These params are used for the filter by date.</p>
+    <pre><code>/users/list?created_at[start]=2016/05/01&amp;created_at[end]=2017/10/01
 
 SELECT ... WHERE ... created_at BETWEEN '2016/05/01' AND '2017/10/01'
-</pre>
-                        </div>
-                        <br>
+</code></pre>
+    <p>****Advanced Where****</p>
+    <pre><code>/users/list?count_posts[operator]=&gt;&amp;count_posts[value]=10&amp;username[]=ali&amp;
+    username[]=mehdi&amp;family=ahmadi&amp;
+    created_at[start]=2016/05/01&amp;created_at[end]=2020/10/01
+&amp;f_params[orderBy][field]=id&amp;f_params[orderBy][type]=ASC
 
-                        <h5>
-                            Advanced Where
+select * from `users` where `count_posts` &gt; 10
+    and `username` in ('ali', 'mehdi') and
+`family` = ahmadi and `created_at` between '2016/05/01' and '2020/10/01'
+    order by 'id' asc limit 10 offset 0
+</code></pre>
+    <p>Therefore, fields of query string are same rows table database in <code>$whiteListFilter</code> in your model or
+        declare the method in your model as override method.
+        The overridden method can be considered a custom query filter.</p>
+    <h3 id="customqueryfilter">Custom Query Filter</h3>
+    <p>Eloquent Filter doesn't support all the conditions by default. For this situation, you can make an overridden
+        method.
+        If you are going to make yourself a query filter, you can do it easily.
+        You should take care of using <code>filterCustom</code> before method name in new version.</p>
+    <p>You should run the command to make a trait and use it on the model:</p>
+    <pre><code>php artisan eloquentFilter:filter users</code></pre>
+    <pre><code class="language-php">namespace App\ModelFilters;
 
-                        </h5>
-                        <br>
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?count_posts[operator]=>&count_posts[value]=10&username[]=ali&username[]=mehdi&family=ahmadi&
-                                created_at[start]=2016/05/01&created_at[end]=2020/10/01
-&f_params[orderBy][field]=id&f_params[orderBy][type]=ASC
-
-select * from `users` where `count_posts` > 10 and `username` in ('ali', 'mehdi') and
-`family` = ahmadi and `created_at` between '2016/05/01' and '2020/10/01' order by 'id' asc limit 10 offset 0
-</pre>
-                        </div>
-                        <br>
-
-                        <span>Just fields of query string be same rows table database in <code>$whiteListFilter</code>
-                                in your model or declare method in your model as override method.
-                                Override method can be considered custom query filter.</span>
-
-
-                    </div>
-
-                    <div>
-
-                        <br>
-                        <div class="subheading mb-3">
-                            Custom query filter
-                        </div>
-                        <p>
-                            If you are going to make yourself query filter you can do it easily.You just make a trait
-                            and
-                            use it on model:
-
-
-                        </p>
-
-                        <!-- HTML generated using hilite.me -->
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Trait usersFilter.
+ * Trait UsersFilter.
  */
-trait usersFilter
+trait UsersFilter
 {
     /**
+     * This is a sample custom query
      * @param \Illuminate\Database\Eloquent\Builder $builder
      * @param                                       $value
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function username_like(Builder $builder, $value)
+    public function filterCustomSample_like(Builder $builder, $value)
     {
-        return $builder->where('username', 'like', '%'.$value.'%');
+        return $builder-&gt;where('username', 'like', '%'.$value.'%');
     }
 }
-</pre>
-                        </div>
-                        <br>
-                        <span>
-                        Note that fields of query string be same methods of trait.Use trait in your model:
-                    </span>
+</code></pre>
+    <p>-<strong>Note</strong> These fields of query string are the same methods of the trait. Use trait in your model:
+    </p>
+    <pre><code>/users/list?sample_like=a
 
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
-/users/list?username_like=a
+select * from `users` where `username` like %a%
+order by `id` desc limit 10 offset 0
+</code></pre>
+    <pre><code class="language-php">
+use App\ModelFilters\UsersFilter;
 
-select * from `users` where `username` like %a% order by `id` desc limit 10 offset 0
-                        </pre>
-                        </div>
-                        <br>
-
-                        <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre
-                                style="margin: 0; line-height: 125%">
 class User extends Model
 {
-    use usersFilter,Filterable;
+    use UsersFilter,Filterable;
 
     protected $table = 'users';
     protected $guarded = [];
@@ -671,36 +585,470 @@ class User extends Model
         'created_at',
         'updated_at',
     ];
+    
+}
+</code></pre>
+    <h3 id="somefiltermethods">Some Filter methods</h3>
+    <pre><code class="language-php">User::filter()-&gt;paginate();
+</code></pre>
+    <ul>
+        <li><p><code>EloquentFilter::filterRequests()</code> : get all params that used by the Eloquent Filter.
+            You can set key to get specific index.
+            For example <code>EloquentFilter::filterRequests('username')</code> it's getting username index.</p>
+        </li>
+        <li><p><code>EloquentFilter::getAcceptedRequest()</code> : get all params that set by the AcceptRequest method.
+        </p>
+        </li>
+        <li><p><code>EloquentFilter::getIgnoredRequest()</code> : get all ignored params that set by the
+            getIgnoreRequest method.</p>
+        </li>
+    </ul>
+    <h3 id="customdetectionconditions">Custom Detection Conditions</h3>
+    <p>Sometimes you want to make your custom condition to make a new query that Eloquent Filter doesn't support by
+        default.
+        The good news is you would make a custom condition in the eloquent filter from now on.</p>
+    <p>You can make conditions to generate a new query after checking by that. For example:</p>
+    <p>We must have two classes. The First detects conditions second class generates the query.</p>
+    <ul>
+        <li>Step 1: Create a class to detect some conditions</li>
+    </ul>
+    <pre><code class="language-php">
+use eloquentFilter\QueryFilter\Detection\Contract\DetectorConditionsContract;
+
+/**
+ * Class WhereRelationLikeCondition.
+ */
+class WhereRelationLikeCondition implements DetectorConditionsContract
+{
+    /**
+     * @param $field
+     * @param $params
+     * @param $is_override_method
+     *
+     * @return string|null
+     */
+    public static function detect($field, $params, $is_override_method = false)
+    : ?string
+    {
+        if (!empty($params['value']) &amp;&amp; !empty($params['limit'])
+            &amp;&amp; !empty($params['email'])) {
+            $method = WhereRelationLikeConditionQuery::class;
+        }
+
+        return $method ?? null;
+    }
+}
+</code></pre>
+    <ul>
+        <li>Step 2:Right after, create a class to generate a query. In this example we make <code>WhereRelationLikeConditionQuery</code>
+            class:
+        </li>
+    </ul>
+    <pre><code class="language-php">use eloquentFilter\QueryFilter\Queries\BaseClause;
+use Illuminate\Database\Eloquent\Builder;
+
+/**
+ * Class WhereRelationLikeConditionQuery.
+ */
+class WhereRelationLikeConditionQuery extends BaseClause
+{
+    /**
+     * @param $query
+     *
+     * @return Builder
+     */
+    public function apply($query): Builder
+    {
+        return $query
+            -&gt;whereHas('posts', function ($q) {
+                $q-&gt;where('comment', 'like', &quot;%&quot; .
+                $this-&gt;values['like_relation_value'] . &quot;%&quot;);
+            })
+            -&gt;where(&quot;$this-&gt;filter&quot;, '&lt;&gt;', $this-&gt;values['value'])
+            -&gt;where('email', 'like', &quot;%&quot; . $this-&gt;values['email'] . &quot;%&quot;)
+            -&gt;limit($this-&gt;values['limit']);
+    }
+}
+</code></pre>
+    <ul>
+        <li>Step 3: You make the method <code>EloquentFilterCustomDetection</code> for return array detections of the
+            condition in the model.
+        </li>
+    </ul>
+    <pre><code class="language-php">use eloquentFilter\QueryFilter\ModelFilters\Filterable;
+
+class User extends Model
+{
+    use Filterable;
+   
+    private static $whiteListFilter =[
+        'username',
+        'posts.count_post',
+        'posts.category',
+        'posts.orders.name',
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function posts()
+    {
+        return $this-&gt;belongsTo('Models\Post');
+    }
+
+    public function EloquentFilterCustomDetection(): array
+    {
+        return [
+            WhereRelationLikeCondition::class
+        ];
+    }
 
 }
-                        </pre>
-                        </div>
-                    </div>
+</code></pre>
+    <ul>
+        <li>Each of the query params is used to detect in <code>WhereRelationLikeCondition</code> for the first time
+            after that check by default detection eloquent filter.
+        </li>
+    </ul>
+    <p>Make method <code>EloquentFilterCustomDetection</code> in the above example and return array conditions class.
+    </p>
+    <pre><code>/users/list?username[value]=mehdi&amp;username[limit]=10
+            &amp;username[email]=mehdifathi&amp;
+            username[like_relation_value]=mehdi&amp;count_posts=10
 
-                </div>
+select * from &quot;users&quot;
+ where exists (select * from &quot;posts&quot; where 
+&quot;users&quot;.&quot;post_id&quot; = &quot;posts&quot;.&quot;id&quot; 
+and &quot;comment&quot; like ?) and &quot;username&quot; &lt;&gt; ? and &quot;email&quot; like ? and &quot;count_posts&quot; = ?
+    limit 10
+</code></pre>
+    <p>You just run code <code> User::filter();</code> for see result.</p>
+    <ul>
+        <li><code>Model::setLoadInjectedDetection(false)</code> : You can deactivate custom detection conditions on the
+            fly.
+        </li>
+    </ul>
+    <p>-<strong>Note</strong> as well, you can set custom detection on the fly by use of the method <code>SetCustomDetection</code>.
+        For example :</p>
+    <pre><code class="language-php">$users = User::SetCustomDetection([WhereRelationLikeCondition::class])-&gt;filter();
+</code></pre>
+    <p>-<strong>Note</strong> You can disable <code>EloquentFilterCustomDetection</code> on the fly by this code :</p>
+    <pre><code class="language-php"> User::SetLoadDefaultDetection(false)-&gt;filter();
+</code></pre>
+    <p>-<strong>Note</strong> You can set many detection conditions. e.g:</p>
+    <pre><code class="language-php">
+class User extends Model
+{
+    use Filterable;
+    public function EloquentFilterCustomDetection(): array
+    {
+        return [
+            WhereRelationLikeCondition::class,
+            WhereRelationLikeVersion2Condition::class,
+            WhereRelationLikeVersion3Condition::class,
+        ];
+    }
+}
+</code></pre>
+    <ul>
+        <li><code>EloquentFilter::getInjectedDetections()</code> gets all of your customs injected detection.</li>
+    </ul>
+    <p>-<strong>Note</strong> Every custom detection will run before any detections by default eloquent filter.</p>
+    <h2 id="configuring">Configuring</h2>
+    <p>You can publish the configuration file to customize the package further:</p>
+    <h3 id="publishconfig">Publish Config</h3>
+    <pre><code>php artisan vendor:publish --provider=&quot;eloquentFilter\ServiceProvider&quot;</code></pre>
+    <h3 id="config">Config</h3>
+    <ul>
+        <li><p>You can disable/enable Eloquent Filter in the config file (eloquentFilter.php).</p>
+            <pre><code>  'enabled' =&gt; env('EloquentFilter_ENABLED', true),</code></pre>
+        </li>
+        <li><p>Eloquent Filter recognizes every param of the queries string.
+            Maybe you have a query string that you don't want to recognize by Eloquent Filter. You can use <code>ignoreRequest</code>
+            for his purpose.
+            But we have a clean solution to this problem. You can set param <code>request_filter_key</code> in the
+            config file.
+            Therefore, every query string will recognize by the <code>request_filter_key</code> param.</p>
+            <pre><code>  'request_filter_key' =&gt; '', // filter</code></pre>
+        </li>
+    </ul>
+    <p>For example, if you set <code>'request_filter_key' =&gt; 'filter',</code> that Eloquent Filter recognizes <code>filter</code>
+        query string.</p>
+    <p><code> /users/list?filter[email]=mehdifathi.developer@gmail.com</code></p>
+    <ul>
+        <li><p>You can disable/enable all the custom detection of Eloquent Filter in the config file
+            (eloquentFilter.php).</p>
+            <pre><code>  'enabled_custom_detection' =&gt;
+    env('EloquentFilter_Custom_Detection_ENABLED', true),</code></pre>
+        </li>
+        <li><p>You should set an index array <code>ignore_request</code> to ignore all filters.</p>
+            <pre><code>  'ignore_request' =&gt; [] //[ 'show_query','new_trend' ],</code></pre>
+        </li>
+        <li><p>You had better keep <code>max_limit</code>. It's a limitation for preventing making awful queries
+            mistakenly by the developer or intentionally by a villain user.</p>
+            <pre><code>  'max_limit' =&gt; 20 </code></pre>
+        </li>
+        <li><p>From now on , we have the ability to record logs by logger instance. Since queries is made dynamically
+            somehow , the need of feature keeping queries with their time is required.
+            So we added it in this version with some other options to better management.</p>
+            <pre><code>  'log' =&gt; [
+  'has_keeping_query' =&gt; false,
+  'max_time_query' =&gt; null,
+  'type' =&gt; 'eloquentFilter.query']</code></pre>
+            <p>It's disable by default you enable by <code>has_keeping_query</code>, <code>type</code> is type log ,and
+                <code>max_time_query</code> is a value for keeping queries with high time-executed.</p>
+        </li>
+    </ul>
+    <h3 id="alias">Alias</h3>
+    <p>Sometimes you may want to change some parameters in the URL while those mention a field of the model.
+        e.g. name of the input form is not similar to the model ,or you want to change them for other reasons so the
+        alias as a new feature can be useful.</p>
+    <pre><code class="language-php">
+    class Stat extends Model
+    {
+        use Filterable;
+        /**
+         * @var array
+         */
+        private static $whiteListFilter = [
+            'type',
+            'national_code',
+        ];
 
+        /**
+         * @var array
+         */
+        private $aliasListFilter = [
+            'national_code' =&gt; 'code',
+        ];
+    }
 
-            </div>
+</code></pre>
+    <p>Then you should send the <code>code</code> param in the URL for making a query with the national code field of
+        the model readily.</p>
+    <h1 id="querybuilderintroduction">Query Builder Introduction</h1>
+    <p>Great news!</p>
+    <p>Some people asked me a lot to add new feature to support Laravel query builder.
+        It needed a lot of energy and devoting time , so I decided to implement it.
+        It's quite tough however finally it's almost done now.</p>
+    <p>We are supporting query builder along with eloquent from now on. Not only you would use query builder ,but also
+        you can use eloquent at the same time.</p>
+    <p>It's a new feature ,and I'm snowed under the code to fix issues. Anyway this feature is up right now with just
+        some limitation.
+        We don't support <code>WhereCustomCondition</code> and <code>WhereHas</code> for query builder at the moment but
+        other conditions were ready to use.
+        in addition, we don't have any kind of <code>whitelist</code> , <code>blacklist</code> , <code>custom
+            detectioon</code> or <code>alias</code>.
+        currently , It's just a simple feature.</p>
+    <ul>
+        <li>Below is an order checking conditions list if you use name of them for set a black list.</li>
+    </ul>
+    <p>| Name | Method eloquent | Example |
+        |-----------------------|-----------------|------------------------------------------|
+        | SpecialCondition | | support f_params, e.g: limit and order |
+        | WhereBetweenCondition | whereBetween | |
+        | WhereByOptCondition | where | where('column', &quot;&gt;&quot;, $value) |
+        | WhereLikeCondition | where | where('column', 'like', $value) |
+        | WhereInCondition | whereIn | whereIn('column', $value) |
+        | WhereOrCondition | orWhere | orWhere('column', $value) |
+        | WhereDateCondition | whereDate | whereDate('column', $value) |
+        | where | where | where('column', $value) |</p>
+    <ul>
+        <li>Usage of them is just extremely like model just you need use filter as a method. Obviously, there's no need
+            any change like use trait or etc.
+        </li>
+    </ul>
+    <pre><code class="language-php"> DB::table('users')-&gt;filter();
+</code></pre>
+    <h2 id="magicmethods">Magic Methods</h2>
+    <p>Magic methods are a collection of methods that you can use as a wrapper in the Eloquent Filter.
+        For example, serialize data before filtering or changing data in response and others.
+        Now Eloquent Filter have <code>serializeRequestFilter</code>,<code>ResponseFilter</code>.</p>
+    <h3 id="requestfilter">Request Filter</h3>
+    <p>Eloquent Filter has a magic method for just change requests injected before handling by eloquent filter. This
+        method is
+        SerializeRequestFilter. You just implement <code>SerializeRequestFilter</code> method in your Model. For example
+    </p>
+    <pre><code class="language-php">
+class User extends Model
+{
+    use Filterable;
+    public function serializeRequestFilter($request)
+    {
+       $request['username'] = trim($request['username']);
+       return $request;
+    }
+}
+</code></pre>
+    <p>As above code, you can modify every query params of the Model in the method <code>serializeRequestFilter</code>
+        before running by Eloquent Filter.
+        That is a practical method when you want to set user_id or convert date or remove space and others.</p>
+    <h3 id="responsefilter">Response Filter</h3>
+    <p>Response Filter is an overriding method for changing response right after handle by Eloquent Filter. The method
+        called
+        <code>getResponseFilter</code> and You could implement the method <code>getResponseFilter</code> in your Model.
+        e.g:</p>
+    <pre><code class="language-php">
+class User extends Model
+{
+    use Filterable;
+    public function getResponseFilter($response)
+    {
+        $data['data'] = $response;
+        return $data;
+    }
+}
+</code></pre>
+    <h3 id="blacklistdetections">Black List Detections</h3>
+    <p>Obviously, you never want all users who are able to get data by manipulating requests. As a result, we'd better
+        have
+        an eloquent control feature.
+        Although we have this ability on request side, we need this feature on Eloquent side as well.</p>
+    <p>We would set a blacklist detection to prevent making conditions by using it. Therefore, that list has been
+        disabled in making conditions. for example:</p>
+    <pre><code class="language-php">
+namespace App\Http\Controllers;
 
+/**
+ * Class UsersController.
+ */
+class UsersController
+{
 
-        </div>
-    </section>
+    public function list()
+    {
+              $users = User::setBlackListDetection(
+                  [
+                      'WhereCondition',
+                  ]
+                )-&gt;filter()
+                -&gt;orderByDesc('id')
+                -&gt;paginate();
+    }
+}
+</code></pre>
+    <ul>
+        <li>Below is an order checking conditions list if you use name of them for set a black list.</li>
+    </ul>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Method eloquent</th>
+            <th>Example</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>WhereCustomCondition</td>
+            <td></td>
+            <td>Your declared custom method of Model</td>
+        </tr>
+        <tr>
+            <td>SpecialCondition</td>
+            <td></td>
+            <td>support f_params, e.g: limit and order</td>
+        </tr>
+        <tr>
+            <td>WhereBetweenCondition</td>
+            <td>whereBetween</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>WhereByOptCondition</td>
+            <td>where</td>
+            <td>where('column', "&gt;", $value)</td>
+        </tr>
+        <tr>
+            <td>WhereLikeCondition</td>
+            <td>where</td>
+            <td>where('column', 'like', $value)</td>
+        </tr>
+        <tr>
+            <td>WhereInCondition</td>
+            <td>whereIn</td>
+            <td>whereIn('column', $value)</td>
+        </tr>
+        <tr>
+            <td>WhereOrCondition</td>
+            <td>orWhere</td>
+            <td>orWhere('column', $value)</td>
+        </tr>
+        <tr>
+            <td>WhereHas</td>
+            <td>WhereHas</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>WhereDateCondition</td>
+            <td>whereDate</td>
+            <td>whereDate('column', $value)</td>
+        </tr>
+        <tr>
+            <td>where</td>
+            <td>where</td>
+            <td>where('column', $value)</td>
+        </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li>You are able to set on Model layer as well. <code>black_list_detections</code> array is used for this
+            purpose.
+        </li>
+    </ul>
+    <pre><code class="language-php">&lt;?php
 
-    <hr class="m-0"/>
-    <!-- Basic Usage-->
-    <hr class="m-0"/>
-    <!-- Skills-->
-    <hr class="m-0"/>
-    <!-- Interests-->
-    <hr class="m-0"/>
-    <!-- Awards-->
+namespace Tests\Models;
+
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
+use Illuminate\Database\Eloquent\Model;
+
+class Car extends Model
+{
+    use Filterable;
+    
+    private static $whiteListFilter = '*';
+
+    protected $black_list_detections = [
+        'WhereCondition',
+    ];
+}
+</code></pre>
+    <h3 id="macromethods">Macro Methods</h3>
+    <p>-<code>isUsedEloquentFilter</code> is a macro method for builder to check either query used eloquent-filter.</p>
+    <p>-<code>getDetectionsInjected</code> is a macro method to get list array of injected objects.</p>
+    <p>e.g:</p>
+    <pre><code class="language-php">$users = User::SetCustomDetection([WhereRelationLikeCondition::class])-&gt;filter();
+echo $users-&gt;isUsedEloquentFilter(); // will true
+echo $users-&gt;getDetectionsInjected();
+// will showing a list array of injected objects
+</code></pre>
+    <h2 id="contributing">Contributing</h2>
+    <p>If you'd like to contribute to Eloquent Filter, please fork the repository and create a pull request. We welcome
+        contributions of all kinds, including bug fixes, new features, and documentation improvements.</p>
+    <h2 id="license">License</h2>
+    <p>Eloquent Filter is open-source software licensed under the <a href="https://opensource.org/licenses/MIT">MIT
+        license</a>.</p>
+    <h2 id="contact">Contact</h2>
+    <p>If you have any questions or feedback about Eloquent Filter, please feel free to contact us at
+        mehdifathi.developer@gmail.com. We'd love to hear from you!</p>
+    <h2 id="acknowledgements">Acknowledgements</h2>
+    <p>We'd like to thank the Laravel community for their support and contributions to this project.</p>
+
 </div>
-<!-- Bootstrap core JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-<!-- Third party plugin JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+</body>
+</html>
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+</div>
 </body>
 </html>
