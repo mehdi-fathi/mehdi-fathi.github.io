@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eloquent Filter Document</title>
+    <meta name="description" content="Eloquent Filter is a robust Laravel package providing an intuitive way to filter your Eloquent models using query
+        strings.">
+    <meta name="keywords" content="Laravel, Eloquent Filter, PHP , Eloquent Laravel , Mysql , Laravel framework">
+    <link rel="canonical" href="https://mehdi-fathi.github.io/eloquent-filter/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mehdi-fathi.github.io/eloquent-filter/">
+    <meta property="og:title" content="Eloquent Filter">
+    <meta property="og:description" content="Eloquent Filter is a robust Laravel package providing an intuitive way to filter your Eloquent models using query
+        strings.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/develop/eloquent-filter.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mehdi-fathi.github.io/eloquent-filter/">
+    <meta property="twitter:title" content="Eloquent Filter">
+    <meta property="twitter:description" content="Eloquent Filter is a robust Laravel package providing an intuitive way to filter your Eloquent models using query
+        strings.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/develop/eloquent-filter.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            margin: 20px;
+            margin: 0;
             padding: 0;
             background: #f4f4f4;
             color: #333;
+        }
+
+        .container, .sidebar {
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            margin-left: 330px; /* Space for the sidebar */
+            padding-top: 60px; /* Adjusting for fixed header */
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -27,32 +63,86 @@
             text-decoration: underline;
         }
 
-        code {
-            font-family: 'Courier New', monospace;
-            background-color: #eee;
-            padding: 2px 4px;
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Adjusting the link styles for the sidebar */
+        .sidebar a {
+            display: block;
+            color: #007bff;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar a i {
+            margin-right: 8px;
+        }
+
+        .sidebar a.active {
+            background-color: #007bff;
+            color: white;
             border-radius: 4px;
         }
 
-        pre {
+        .sidebar a:hover {
+            background-color: #ddd;
+            color: #0056b3;
+        }
+
+        .sidebar h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul ul {
+            padding-left: 20px;
+        }
+
+        .sidebar li {
+            margin-bottom: 5px;
+        }
+
+        /* Content Styles */
+        code, pre {
+            font-family: 'Courier New', monospace;
             background-color: #eee;
+            border-radius: 4px;
+        }
+
+        code {
+            padding: 2px 4px;
+        }
+
+        pre {
             border: 1px solid #ddd;
             padding: 10px;
-            border-radius: 5px;
         }
 
         img {
             max-width: 100%;
             height: auto;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         table {
@@ -69,15 +159,53 @@
         th {
             background-color: #f8f8f8;
         }
+
     </style>
 </head>
 <body>
+<div class="sidebar">
+    <h2 id="tableofcontent">Table of Content</h2>
+    <ul>
+        <li><a href="#introduction"><i class="fa fa-info-circle"></i> Introduction</a></li>
+        <li><a href="#installation"><i class="fa fa-download"></i> Installation</a></li>
+        <li>
+            <a href="#basicusage"><i class="fa fa-cogs"></i> Basic Usage</a>
+            <ul>
+                <li><a href="#configmodelandsetwhitelist">Config Model</a></li>
+                <li><a href="#useincontroller">Use in Controller</a></li>
+                <li><a href="#simpleexamples">Simple Examples</a></li>
+                <li><a href="#customqueryfilter">Custom Query Filter</a></li>
+                <li><a href="#customdetectionconditions">Custom Detection Condition</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#configuring"><i class="fa fa-tools"></i> Configuring</a>
+            <ul>
+                <li><a href="#publishconfig">Publish Config</a></li>
+                <li><a href="#config">Config</a></li>
+                <li><a href="#alias">Alias</a></li>
+            </ul>
+        </li>
+        <li><a href="#querybuilderintroduction"><i class="fa fa-database"></i> Query Builder</a></li>
+        <li>
+            <a href="#magicmethods"><i class="fa fa-magic"></i> Magic Methods</a>
+            <ul>
+                <li><a href="#requestfilter">Request Filter</a></li>
+                <li><a href="#responsefilter">Response Filter</a></li>
+                <li><a href="#blacklistdetections">Black List Detections</a></li>
+                <li><a href="#macromethods">Macro Methods</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
 <div class="container">
     <h1 id="eloquentfilterahrefhttpstwittercomintenttweettexteloquent20filter20adds20custom20filters20to20your20eloquent20models20in20laravel26url3dhttps3a2f2fgithubcom2fmehdi-fathi2feloquent-filter26via3dmehdi-fathi26hashtags3dlaravel2celoquent2cphp2cmysql2cdatabase2celoquentfilterimgsrchttpsimgshieldsiotwitterurlhttpshieldsiosvgstylesocialalttweeta">
         Eloquent Filter <a
             href="https://twitter.com/intent/tweet?text=Eloquent%20Filter%20adds%20custom%20filters%20to%20your%20Eloquent%20Models%20in%20Laravel%26url%3Dhttps%3A%2F%2Fgithub.com%2Fmehdi-fathi%2Feloquent-filter%26via%3Dmehdi-fathi%26hashtags%3Dlaravel%2Celoquent%2Cphp%2Cmysql%2Cdatabase%2Celoquentfilter"><img
             src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Tweet"/></a></h1>
-    <p><img src="https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/develop/eloquent-filter.png" alt="alt text" title="eloquent-filter"/></p>
+    <p><img src="https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/develop/eloquent-filter.png"
+            alt="alt text" title="eloquent-filter"/></p>
     <p><a href="https://packagist.org/packages/mehdi-fathi/eloquent-filter"><img
             src="https://img.shields.io/packagist/v/mehdi-fathi/eloquent-filter" alt="Latest Stable Version"/></a>
         <img src="https://github.com/mehdi-fathi/eloquent-filter/workflows/Run%20tests/badge.svg?branch=master"
@@ -113,40 +241,7 @@
     <p><strong>Note</strong> We considered what predictable features you wanted to implement no matter simple or
         complex,
         although we have a lot of features to make able you to implement your specific something else.</p>
-    <h2 id="tableofcontent">Table of Content</h2>
-    <ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#installation">Installation</a></li>
-        <li><a href="#basic-usage">Basic Usage</a>
-            <ul>
-                <li><a href="#config-model-and-set-whitelist">Config Model</a></li>
-                <li><a href="#use-in-controller">Use in Controller</a></li>
-                <li><a href="#simple-examples">Simple Examples</a></li>
-                <li><a href="#custom-query-filter">Custom Query Filter</a></li>
-                <li><a href="#custom-detection-condition">Custom Detection Condition</a></li>
-            </ul>
-        </li>
-        <li><a href="#configuring">Configuring</a>
-            <ul>
-                <li><a href="#publish-config">Publish Config</a></li>
-                <li><a href="#config">Config</a></li>
-                <li><a href="#alias">Alias</a></li>
-            </ul>
-        </li>
-        <li><a href="#query-builder">Query Builder</a>
-            <ul>
-                <li><a href="#db-introduction">Introduction</a></li>
-            </ul>
-        </li>
-        <li><a href="#magic-methods">Magic Methods</a>
-            <ul>
-                <li><a href="#request-filter">Request Filter</a></li>
-                <li><a href="#response-filter">Response Filter</a></li>
-                <li><a href="#macro-Methods">Macro Methods</a></li>
-                <li><a href="#black-list-detections">Black List Detections</a></li>
-            </ul>
-        </li>
-    </ul>
+
     <h2 id="requirements">Requirements</h2>
     <ul>
         <li>PHP 8.0,8.1,8.2</li>
@@ -302,7 +397,7 @@ class UsersController
 class User extends Model
 {
     use Filterable;
-    
+
     private static $whiteListFilter =[
         'id',
         'username',
@@ -341,7 +436,7 @@ class UsersController
     public function list()
     {
           if (!empty(request()-&gt;get('username'))) {
-          
+
               $users = User::ignoreRequest('perpage')
                         -&gt;filter()
                         -&gt;with('posts')
@@ -350,7 +445,7 @@ class UsersController
 
           } else {
               $users = User::filter(
-                ['username' =&gt; ['mehdi','ali']]           
+                ['username' =&gt; ['mehdi','ali']]
                 )-&gt;with('posts')
                 -&gt;orderByDesc('id')
                 -&gt;paginate(10,['*'],'page');
@@ -451,7 +546,7 @@ SELECT ... WHERE ... count_posts &lt; 25
 class User extends Model
 {
     use Filterable;
-   
+
     private static $whiteListFilter =[
         'username',
         'posts.count_post',
@@ -471,8 +566,8 @@ class User extends Model
 </code></pre>
     <pre><code>/users/list?posts[count_post]=876&amp;username=mehdi
 
-select * from &quot;users&quot; where exists 
-         (select * from &quot;posts&quot; where &quot;posts&quot;.&quot;user_id&quot; = &quot;users&quot;.&quot;id&quot; 
+select * from &quot;users&quot; where exists
+         (select * from &quot;posts&quot; where &quot;posts&quot;.&quot;user_id&quot; = &quot;users&quot;.&quot;id&quot;
          and &quot;posts&quot;.&quot;count_post&quot; = 876)
          and &quot;username&quot; = &quot;mehdi&quot;
 </code></pre>
@@ -491,8 +586,8 @@ select * from &quot;users&quot; where exists
     <p>You can pass array to make whereIn condition.</p>
     <pre><code>/users/list?posts[category][]=php&amp;posts[category][]=laravel&amp;posts[category][]=jquery&amp;username=mehdi
 
-select * from &quot;users&quot; where exists 
-         (select * from &quot;posts&quot; where 
+select * from &quot;users&quot; where exists
+         (select * from &quot;posts&quot; where
          &quot;posts&quot;.&quot;category&quot; in ('php','laravel','jquery') )
          and &quot;username&quot; = &quot;mehdi&quot;
 </code></pre>
@@ -585,7 +680,7 @@ class User extends Model
         'created_at',
         'updated_at',
     ];
-    
+
 }
 </code></pre>
     <h3 id="somefiltermethods">Some Filter methods</h3>
@@ -680,7 +775,7 @@ class WhereRelationLikeConditionQuery extends BaseClause
 class User extends Model
 {
     use Filterable;
-   
+
     private static $whiteListFilter =[
         'username',
         'posts.count_post',
@@ -717,8 +812,8 @@ class User extends Model
             username[like_relation_value]=mehdi&amp;count_posts=10
 
 select * from &quot;users&quot;
- where exists (select * from &quot;posts&quot; where 
-&quot;users&quot;.&quot;post_id&quot; = &quot;posts&quot;.&quot;id&quot; 
+ where exists (select * from &quot;posts&quot; where
+&quot;users&quot;.&quot;post_id&quot; = &quot;posts&quot;.&quot;id&quot;
 and &quot;comment&quot; like ?) and &quot;username&quot; &lt;&gt; ? and &quot;email&quot; like ? and &quot;count_posts&quot; = ?
     limit 10
 </code></pre>
@@ -1006,7 +1101,7 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use Filterable;
-    
+
     private static $whiteListFilter = '*';
 
     protected $black_list_detections = [
@@ -1039,6 +1134,7 @@ echo $users-&gt;getDetectionsInjected();
 </body>
 </html>
 <script>
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -1047,6 +1143,29 @@ echo $users-&gt;getDetectionsInjected();
             });
         });
     });
+
+    // Function to check if an element is in viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    window.addEventListener('scroll', () => {
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            const section = document.querySelector(link.hash);
+            if (section && isInViewport(section)) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    });
+
 </script>
 
 </div>
