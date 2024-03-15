@@ -244,8 +244,8 @@
 
     <h2 id="requirements">Requirements</h2>
     <ul>
-        <li>PHP 8.0,8.1,8.2</li>
-        <li>Laravel 8.x,9.x,10.x(New)</li>
+        <li>PHP 8.0,8.1,8.2,8.3</li>
+        <li>Laravel 8.x,9.x,10.x,11.x</li>
     </ul>
     <h3 id="versioninformation">Version information</h3>
     <p>The Eloquent Filter has reached more than 100,000 installations recently, so I made a decision to release version
@@ -255,42 +255,57 @@
         <li>Support query builder along with eloquent</li>
         <li>Set a specific name for custom methods</li>
     </ul>
-    <table>
-        <thead>
-        <tr>
-            <th>Version</th>
-            <th>Illuminate</th>
-            <th>Status</th>
-            <th>PHP Version</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>^4.0</td>
-            <td>4.x.x - 4.x.x</td>
-            <td>Active support</td>
-            <td>&gt;= 8.0</td>
-        </tr>
-        <tr>
-            <td>^3.0</td>
-            <td>3.2.x - 3.4.x</td>
-            <td>End of life</td>
-            <td>&gt;= 8.0</td>
-        </tr>
-        <tr>
-            <td>^3.0</td>
-            <td>3.0.0 - 3.0.5</td>
-            <td>End of life</td>
-            <td>&gt;= 7.4.0</td>
-        </tr>
-        <tr>
-            <td>^2.0</td>
-            <td>2.0.0 - 2.6.7</td>
-            <td>End of life</td>
-            <td>&lt;= 7.4.0</td>
-        </tr>
-        </tbody>
-    </table>
+    
+
+    <table border="1">
+  <thead>
+    <tr>
+      <th>Major Version</th>
+      <th>Versions</th>
+      <th>Status</th>
+      <th>PHP Version</th>
+      <th>Laravel Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>^4.0</td>
+      <td>4.2.0 - 4.x.x</td>
+      <td>Active support</td>
+      <td>>= 8.2</td>
+      <td>>= 11.x</td>
+    </tr>
+    <tr>
+      <td>^4.0</td>
+      <td>4.0.x - 4.1.5</td>
+      <td>Active support</td>
+      <td>>= 8.0</td>
+      <td>>= 9.x - &lt;= 10.x</td>
+    </tr>
+    <tr>
+      <td>^3.0</td>
+      <td>3.2.x - 3.4.x</td>
+      <td>End of life</td>
+      <td>>= 8.0</td>
+      <td>>= 9.x</td>
+    </tr>
+    <tr>
+      <td>^3.0</td>
+      <td>3.0.0 - 3.0.5</td>
+      <td>End of life</td>
+      <td>>= 7.4.0</td>
+      <td>>= 5.6.x - &lt;= 8.x</td>
+    </tr>
+    <tr>
+      <td>^2.0</td>
+      <td>2.0.0 - 2.6.7</td>
+      <td>End of life</td>
+      <td>&lt;= 7.4.0</td>
+      <td>>= 5.x - &lt;= 5.4</td>
+    </tr>
+  </tbody>
+</table>
+    
     <h2 id="introduction">Introduction</h2>
     <p>Conceivably, you would face challenges if you've done a task as an end-point in which there are some queries with
         many advanced options.</p>
