@@ -16,7 +16,8 @@
     <meta property="og:title" content="Eloquent Filter">
     <meta property="og:description" content="Eloquent Filter is a robust Laravel package providing an intuitive way to filter your Eloquent models using query
         strings.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/develop/eloquent-filter.png">
+    <meta property="og:image"
+          content="https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/develop/eloquent-filter.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -24,7 +25,8 @@
     <meta property="twitter:title" content="Eloquent Filter">
     <meta property="twitter:description" content="Eloquent Filter is a robust Laravel package providing an intuitive way to filter your Eloquent models using query
         strings.">
-    <meta property="twitter:image" content="https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/develop/eloquent-filter.png">
+    <meta property="twitter:image"
+          content="https://raw.githubusercontent.com/mehdi-fathi/eloquent-filter/develop/eloquent-filter.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
@@ -191,6 +193,7 @@
             <a href="#magicmethods"><i class="fa fa-magic"></i> Magic Methods</a>
             <ul>
                 <li><a href="#requestfilter">Request Filter</a></li>
+                <li><a href="#requestfieldcastfilter">Request Field Cast Filter</a></li>
                 <li><a href="#responsefilter">Response Filter</a></li>
                 <li><a href="#blacklistdetections">Black List Detections</a></li>
                 <li><a href="#macromethods">Macro Methods</a></li>
@@ -255,57 +258,57 @@
         <li>Support query builder along with eloquent</li>
         <li>Set a specific name for custom methods</li>
     </ul>
-    
+
 
     <table border="1">
-  <thead>
-    <tr>
-      <th>Major Version</th>
-      <th>Versions</th>
-      <th>Status</th>
-      <th>PHP Version</th>
-      <th>Laravel Version</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>^4.0</td>
-      <td>4.2.0 - 4.x.x</td>
-      <td>Active support</td>
-      <td>>= 8.2</td>
-      <td>>= 11.x</td>
-    </tr>
-    <tr>
-      <td>^4.0</td>
-      <td>4.0.x - 4.1.5</td>
-      <td>Active support</td>
-      <td>>= 8.0</td>
-      <td>>= 9.x - &lt;= 10.x</td>
-    </tr>
-    <tr>
-      <td>^3.0</td>
-      <td>3.2.x - 3.4.x</td>
-      <td>End of life</td>
-      <td>>= 8.0</td>
-      <td>>= 9.x</td>
-    </tr>
-    <tr>
-      <td>^3.0</td>
-      <td>3.0.0 - 3.0.5</td>
-      <td>End of life</td>
-      <td>>= 7.4.0</td>
-      <td>>= 5.6.x - &lt;= 8.x</td>
-    </tr>
-    <tr>
-      <td>^2.0</td>
-      <td>2.0.0 - 2.6.7</td>
-      <td>End of life</td>
-      <td>&lt;= 7.4.0</td>
-      <td>>= 5.x - &lt;= 5.4</td>
-    </tr>
-  </tbody>
-</table>
-    
+        <thead>
+        <tr>
+            <th>Major Version</th>
+            <th>Versions</th>
+            <th>Status</th>
+            <th>PHP Version</th>
+            <th>Laravel Version</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>^4.0</td>
+            <td>4.2.0 - 4.x.x</td>
+            <td>Active support</td>
+            <td>>= 8.2</td>
+            <td>>= 11.x</td>
+        </tr>
+        <tr>
+            <td>^4.0</td>
+            <td>4.0.x - 4.1.5</td>
+            <td>Active support</td>
+            <td>>= 8.0</td>
+            <td>>= 9.x - &lt;= 10.x</td>
+        </tr>
+        <tr>
+            <td>^3.0</td>
+            <td>3.2.x - 3.4.x</td>
+            <td>End of life</td>
+            <td>>= 8.0</td>
+            <td>>= 9.x</td>
+        </tr>
+        <tr>
+            <td>^3.0</td>
+            <td>3.0.0 - 3.0.5</td>
+            <td>End of life</td>
+            <td>>= 7.4.0</td>
+            <td>>= 5.6.x - &lt;= 8.x</td>
+        </tr>
+        <tr>
+            <td>^2.0</td>
+            <td>2.0.0 - 2.6.7</td>
+            <td>End of life</td>
+            <td>&lt;= 7.4.0</td>
+            <td>>= 5.x - &lt;= 5.4</td>
+        </tr>
+        </tbody>
+    </table>
+
     <h2 id="introduction">Introduction</h2>
     <p>Conceivably, you would face challenges if you've done a task as an end-point in which there are some queries with
         many advanced options.</p>
@@ -993,6 +996,28 @@ class User extends Model
     <p>As above code, you can modify every query params of the Model in the method <code>serializeRequestFilter</code>
         before running by Eloquent Filter.
         That is a practical method when you want to set user_id or convert date or remove space and others.</p>
+
+    <h3 id="requestfieldcastfilter">Request Field Cast Filter</h3>
+    <p>Eloquent Filter requires a bunch of specific methods for each of the fields before going on filter process.
+        This feature has been implemented recently.
+        By this<code>filterSet</code> + <code>field</code> method in your model,
+        You will be able to add some change for that particular field.
+    </p>
+    <pre><code class="language-php">
+class Category extends Model
+{
+    use Filterable;
+
+    private static $whiteListFilter =[
+        'desc'
+    ];
+
+    public function filterSetDesc($value)
+    {
+        return trim($value);
+    }
+}</code></pre>
+    <br>
     <h3 id="responsefilter">Response Filter</h3>
     <p>Response Filter is an overriding method for changing response right after handle by Eloquent Filter. The method
         called
@@ -1010,10 +1035,11 @@ class User extends Model
 }
 </code></pre>
 
-    
-    <p>You are capable of passing a callback function to `getResponseFilter` method to change the response. We only have this feature in query builder DB.</p>
 
-<pre><code class="language-php">
+    <p>You are capable of passing a callback function to `getResponseFilter` method to change the response. We only have
+        this feature in query builder DB.</p>
+
+    <pre><code class="language-php">
 $categories = DB::table('categories')->filter()->getResponseFilter(function ($out) {
 
     $data['data'] = $out;
