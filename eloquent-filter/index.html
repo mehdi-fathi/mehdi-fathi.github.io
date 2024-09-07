@@ -175,6 +175,7 @@
             <ul>
                 <li><a href="#configmodelandsetwhitelist">Config Model</a></li>
                 <li><a href="#useincontroller">Use in Controller</a></li>
+                <li><a href="#conditionsguidancetable">Conditions Guidance Table</a></li>
                 <li><a href="#simpleexamples">Simple Examples</a></li>
                 <li><a href="#customqueryfilter">Custom Query Filter</a></li>
                 <li><a href="#customdetectionconditions">Custom Detection Condition</a></li>
@@ -378,8 +379,7 @@ class UsersController
     <p>By Eloquent filter implementation, you can use all the documented filters!</p>
     <h2 id="installation">Installation</h2>
     <p>1- Run the following command in your project directory to add the Eloquent Filter as a dependency</p>
-    <pre><code>    $ composer require mehdi-fathi/eloquent-filter
-  </code></pre>
+    <pre><code>$ composer require mehdi-fathi/eloquent-filter</code></pre>
     <ul>
         <li><p><strong>Note</strong> for Laravel versions older than 5.8 you should install version 2.2.5</p>
             <pre><code>  $ composer require mehdi-fathi/eloquent-filter:2.2.5</code></pre>
@@ -501,6 +501,122 @@ User::AcceptRequest(['username','id'])
         e.g: <code>username</code> and <code>id</code> key will be in the conditions eloquent filter.</p>
     <p>-<strong>Note</strong> Just in case, you must set <code>$whiteListFilter</code> in Models. Aim of the method
         avert to manipulation query string by a bad user.</p>
+
+    <h3 id="conditionsguidancetable">Conditions Guidance Table</h3>
+
+    <p> To better understand this, I provided a table of all conditions and samples. It represents how eloquent filter
+        detect params and each param what query would make. </p>
+
+    <style>
+        tr > td:first-child {
+            text-align: center;
+        }
+    </style>
+
+    <table border="1" style="width: 100%; border-collapse: collapse;">
+        <thead>
+        <tr>
+            <th>Condition Name</th>
+            <th>Eloquent Method</th>
+            <th>Param</th>
+            <th>Example</th>
+            <th>Eloquent</th>
+            <th>DB</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>WhereCustomCondition</td>
+            <td></td>
+            <td></td>
+            <td>Declared custom method of Model</td>
+            <td>✅</td>
+            <td>❌</td>
+        </tr>
+        <tr>
+            <td>SpecialCondition</td>
+            <td></td>
+            <td>f_params[limit]=10</td>
+            <td>Support f_params, e.g., limit and order</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>WhereBetweenCondition</td>
+            <td>whereBetween</td>
+            <td>created_at[start]=2016/05/01 & created_at[end]=2017/10/01</td>
+            <td>whereBetween('created_at', [{start}, {end}])</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>WhereByOptCondition</td>
+            <td>where</td>
+            <td>count_posts[operator]=> & count_posts[value]=35</td>
+            <td>where('column', ">", $value)</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>WhereLikeCondition</td>
+            <td>where</td>
+            <td>first_name[like]=John</td>
+            <td>where('column', 'like', $value)</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>WhereInCondition</td>
+            <td>whereIn</td>
+            <td>username[]=David & username[]=John12</td>
+            <td>whereIn('column', $value)</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>WhereOrCondition</td>
+            <td>orWhere</td>
+            <td>username=Bill & or[username]=James</td>
+            <td>orWhere('column', $value)</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>WhereHas</td>
+            <td>WhereHas</td>
+            <td>posts[title]=sport one</td>
+            <td>whereHas('posts', function ($q) {$q->where('title', $value)});</td>
+            <td>✅</td>
+            <td>❌</td>
+        </tr>
+        <tr>
+            <td>WhereDoesntHaveCondition</td>
+            <td>whereDoesntHave</td>
+            <td>doesnt_have=category</td>
+            <td>doesntHave($value)</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>WhereDateCondition</td>
+            <td>whereDate</td>
+            <td>created_at=2024-09-01</td>
+            <td>whereDate('column', $value)</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>WhereCondition</td>
+            <td>where</td>
+            <td>username=Mehdi</td>
+            <td>where('column', $value)</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        </tbody>
+    </table>
+
+
     <h3 id="simpleexamples">Simple Examples</h3>
     <p>You just pass data form as query string. For example:</p>
     <p><strong>Simple Where</strong></p>
@@ -600,6 +716,23 @@ select * from &quot;users&quot; where exists
         })-&gt;where('username','mehdi');
 
 </code></pre>
+
+    <p><em><strong>Doesnthave Where (new feature)</strong></em></p>
+    <ul>
+        <li>
+            To fetching those data that doesn't have any relationship with the model as the same `Doesnthave` method
+            worked.
+        </li>
+    </ul>
+
+    <pre><code class="language-php">
+/tags/list?doesnt_have=category
+
+select * from "tags" where not exists (select * from "categories" where "tags"."foo_id" = "categories"."id")'
+
+</code></pre>
+
+
     <p><em><strong>Where array the nested relation Model</strong></em></p>
     <p>You can pass array to make whereIn condition.</p>
     <pre><code>/users/list?posts[category][]=php&amp;posts[category][]=laravel&amp;posts[category][]=jquery&amp;username=mehdi
@@ -609,7 +742,7 @@ select * from &quot;users&quot; where exists
          &quot;posts&quot;.&quot;category&quot; in ('php','laravel','jquery') )
          and &quot;username&quot; = &quot;mehdi&quot;
 </code></pre>
-    <p>****Special Params****</p>
+    <p><em><strong>Special Params</strong></em></p>
     <p>You can set special params <code>limit</code> and <code>orderBy</code> in the query string to make a query by
         that.</p>
     <pre><code>/users/list?f_params[limit]=1
@@ -632,7 +765,7 @@ SELECT ... WHERE ...  order by `id` asc, `count_posts` asc
 
 SELECT ... WHERE ... created_at BETWEEN '2016/05/01' AND '2017/10/01'
 </code></pre>
-    <p>****Advanced Where****</p>
+    <p><em><strong>Advanced Where</strong></em></p>
     <pre><code>/users/list?count_posts[operator]=&gt;&amp;count_posts[value]=10&amp;username[]=ali&amp;
     username[]=mehdi&amp;family=ahmadi&amp;
     created_at[start]=2016/05/01&amp;created_at[end]=2020/10/01
@@ -953,24 +1086,6 @@ class User extends Model
         in addition, we don't have any kind of <code>whitelist</code> , <code>blacklist</code> , <code>custom
             detectioon</code> or <code>alias</code>.
         currently , It's just a simple feature.</p>
-    <ul>
-        <li>Below is an order checking conditions list if you use name of them for set a black list.</li>
-    </ul>
-    <p>| Name | Method eloquent | Example |
-        |-----------------------|-----------------|------------------------------------------|
-        | SpecialCondition | | support f_params, e.g: limit and order |
-        | WhereBetweenCondition | whereBetween | |
-        | WhereByOptCondition | where | where('column', &quot;&gt;&quot;, $value) |
-        | WhereLikeCondition | where | where('column', 'like', $value) |
-        | WhereInCondition | whereIn | whereIn('column', $value) |
-        | WhereOrCondition | orWhere | orWhere('column', $value) |
-        | WhereDateCondition | whereDate | whereDate('column', $value) |
-        | where | where | where('column', $value) |</p>
-    <ul>
-        <li>Usage of them is just extremely like model just you need use filter as a method. Obviously, there's no need
-            any change like use trait or etc.
-        </li>
-    </ul>
     <pre><code class="language-php"> DB::table('users')-&gt;filter();
 </code></pre>
     <h2 id="magicmethods">Magic Methods</h2>
@@ -1077,70 +1192,6 @@ class UsersController
     }
 }
 </code></pre>
-    <ul>
-        <li>Below is an order checking conditions list if you use name of them for set a black list.</li>
-    </ul>
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Method eloquent</th>
-            <th>Example</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>WhereCustomCondition</td>
-            <td></td>
-            <td>Your declared custom method of Model</td>
-        </tr>
-        <tr>
-            <td>SpecialCondition</td>
-            <td></td>
-            <td>support f_params, e.g: limit and order</td>
-        </tr>
-        <tr>
-            <td>WhereBetweenCondition</td>
-            <td>whereBetween</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>WhereByOptCondition</td>
-            <td>where</td>
-            <td>where('column', "&gt;", $value)</td>
-        </tr>
-        <tr>
-            <td>WhereLikeCondition</td>
-            <td>where</td>
-            <td>where('column', 'like', $value)</td>
-        </tr>
-        <tr>
-            <td>WhereInCondition</td>
-            <td>whereIn</td>
-            <td>whereIn('column', $value)</td>
-        </tr>
-        <tr>
-            <td>WhereOrCondition</td>
-            <td>orWhere</td>
-            <td>orWhere('column', $value)</td>
-        </tr>
-        <tr>
-            <td>WhereHas</td>
-            <td>WhereHas</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>WhereDateCondition</td>
-            <td>whereDate</td>
-            <td>whereDate('column', $value)</td>
-        </tr>
-        <tr>
-            <td>where</td>
-            <td>where</td>
-            <td>where('column', $value)</td>
-        </tr>
-        </tbody>
-    </table>
     <ul>
         <li>You are able to set on Model layer as well. <code>black_list_detections</code> array is used for this
             purpose.
