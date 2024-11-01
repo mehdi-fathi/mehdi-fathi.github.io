@@ -178,6 +178,7 @@
                 <li><a href="#conditionsguidancetable">Conditions Guidance Table</a></li>
                 <li><a href="#simpleexamples">Simple Examples</a></li>
                 <li><a href="#customqueryfilter">Custom Query Filter</a></li>
+                <li><a href="#requestencoded">Request encoded</a></li>
                 <li><a href="#customdetectionconditions">Custom Detection Condition</a></li>
             </ul>
         </li>
@@ -224,9 +225,7 @@
         <a href="https://scrutinizer-ci.com/g/mehdi-fathi/eloquent-filter/?branch=master"><img
                 src="https://scrutinizer-ci.com/g/mehdi-fathi/eloquent-filter/badges/quality-score.png?b=master"
                 alt="Scrutinizer Code Quality"/></a>
-        <a href="https://codecov.io/gh/mehdi-fathi/eloquent-filter"><img
-                src="https://codecov.io/gh/mehdi-fathi/eloquent-filter/branch/develop/graph/badge.svg?token=QY9HA6NXFH"
-                alt="codecov"/></a></p>
+    </p>
     <p>Eloquent Filter is a robust Laravel package providing an intuitive way to filter your Eloquent models using query
         strings.
         Perfect for crafting responsive APIs and complex data sets, this package seamlessly integrates with Laravel's
@@ -842,13 +841,44 @@ class User extends Model
             You can set key to get specific index.
             For example <code>EloquentFilter::filterRequests('username')</code> it's getting username index.</p>
         </li>
-        <li><p><code>EloquentFilter::getAcceptedRequest()</code> : get all params that set by the AcceptRequest method.
+        <li><p><code>EloquentFilter::getAcceptedRequest()</code> : get all params that set by the AcceptRequest
+            method.
         </p>
         </li>
         <li><p><code>EloquentFilter::getIgnoredRequest()</code> : get all ignored params that set by the
             getIgnoreRequest method.</p>
         </li>
     </ul>
+    <h3 id="requestencoded">Request encoded</h3>
+
+    <p> In particular projects, We don't want to share our request filters with all users.
+        It means every single user should have a unique valid url for duplicated search
+        then It works just for the same user.</p>
+
+    <ul>
+
+        <li><p><code>EloquentFilter::getRequestEncoded()</code> : get passed request as encoded request based on
+            default.
+        </li>
+        <li><p><code>EloquentFilter::setRequestEncoded()</code> : set request encoded with a selective salt.
+        </p>
+        </li>
+    </ul>
+    <p>
+        You just need to pass `hashed_filters` as key to detect hashed_filter and encode them in the core. Every single
+        user has a unique url per user. In addition, nobody can manipulate parameters in order to get specific data.
+    </p>
+
+    <pre><code>
+    /users/list?hashed_filters=MXsidGl0bGUiOiJzcG9ydCJ9
+
+    SELECT ... WHERE ... name = 'mehdi'
+    </code></pre>
+    <p> You make sure adjust `request_salt` in config.php. You'd better set a unique value like user_id or ip.
+
+        For this purpose, You had better have an end-point to set and get request encoded then pass it to your main
+        end-point for result.</p>
+
     <h3 id="customdetectionconditions">Custom Detection Conditions</h3>
     <p>Sometimes you want to make your custom condition to make a new query that Eloquent Filter doesn't support by
         default.
@@ -917,7 +947,8 @@ class WhereRelationLikeConditionQuery extends BaseClause
 }
 </code></pre>
     <ul>
-        <li>Step 3: You make the method <code>EloquentFilterCustomDetection</code> for return array detections of the
+        <li>Step 3: You make the method <code>EloquentFilterCustomDetection</code> for return array detections of
+            the
             condition in the model.
         </li>
     </ul>
@@ -956,7 +987,8 @@ class User extends Model
             after that check by default detection eloquent filter.
         </li>
     </ul>
-    <p>Make method <code>EloquentFilterCustomDetection</code> in the above example and return array conditions class.
+    <p>Make method <code>EloquentFilterCustomDetection</code> in the above example and return array conditions
+        class.
     </p>
     <pre><code>/users/list?username[value]=mehdi&amp;username[limit]=10
             &amp;username[email]=mehdifathi&amp;
@@ -970,7 +1002,8 @@ and &quot;comment&quot; like ?) and &quot;username&quot; &lt;&gt; ? and &quot;em
 </code></pre>
     <p>You just run code <code> User::filter();</code> for see result.</p>
     <ul>
-        <li><code>Model::setLoadInjectedDetection(false)</code> : You can deactivate custom detection conditions on the
+        <li><code>Model::setLoadInjectedDetection(false)</code> : You can deactivate custom detection conditions on
+            the
             fly.
         </li>
     </ul>
@@ -978,7 +1011,8 @@ and &quot;comment&quot; like ?) and &quot;username&quot; &lt;&gt; ? and &quot;em
         For example :</p>
     <pre><code class="language-php">$users = User::SetCustomDetection([WhereRelationLikeCondition::class])-&gt;filter();
 </code></pre>
-    <p>-<strong>Note</strong> You can disable <code>EloquentFilterCustomDetection</code> on the fly by this code :</p>
+    <p>-<strong>Note</strong> You can disable <code>EloquentFilterCustomDetection</code> on the fly by this code :
+    </p>
     <pre><code class="language-php"> User::SetLoadDefaultDetection(false)-&gt;filter();
 </code></pre>
     <p>-<strong>Note</strong> You can set many detection conditions. e.g:</p>
@@ -1018,7 +1052,8 @@ class User extends Model
             <pre><code>  'request_filter_key' =&gt; '', // filter</code></pre>
         </li>
     </ul>
-    <p>For example, if you set <code>'request_filter_key' =&gt; 'filter',</code> that Eloquent Filter recognizes <code>filter</code>
+    <p>For example, if you set <code>'request_filter_key' =&gt; 'filter',</code> that Eloquent Filter recognizes
+        <code>filter</code>
         query string.</p>
     <p><code> /users/list?filter[email]=mehdifathi.developer@gmail.com</code></p>
     <ul>
@@ -1034,14 +1069,16 @@ class User extends Model
             mistakenly by the developer or intentionally by a villain user.</p>
             <pre><code>  'max_limit' =&gt; 20 </code></pre>
         </li>
-        <li><p>From now on , we have the ability to record logs by logger instance. Since queries is made dynamically
+        <li><p>From now on , we have the ability to record logs by logger instance. Since queries is made
+            dynamically
             somehow , the need of feature keeping queries with their time is required.
             So we added it in this version with some other options to better management.</p>
             <pre><code>  'log' =&gt; [
   'has_keeping_query' =&gt; false,
   'max_time_query' =&gt; null,
   'type' =&gt; 'eloquentFilter.query']</code></pre>
-            <p>It's disable by default you enable by <code>has_keeping_query</code>, <code>type</code> is type log ,and
+            <p>It's disable by default you enable by <code>has_keeping_query</code>, <code>type</code> is type log
+                ,and
                 <code>max_time_query</code> is a value for keeping queries with high time-executed.</p>
         </li>
     </ul>
@@ -1070,18 +1107,22 @@ class User extends Model
     }
 
 </code></pre>
-    <p>Then you should send the <code>code</code> param in the URL for making a query with the national code field of
+    <p>Then you should send the <code>code</code> param in the URL for making a query with the national code field
+        of
         the model readily.</p>
     <h1 id="querybuilderintroduction">Query Builder Introduction</h1>
     <p>Great news!</p>
     <p>Some people asked me a lot to add new feature to support Laravel query builder.
         It needed a lot of energy and devoting time , so I decided to implement it.
         It's quite tough however finally it's almost done now.</p>
-    <p>We are supporting query builder along with eloquent from now on. Not only you would use query builder ,but also
+    <p>We are supporting query builder along with eloquent from now on. Not only you would use query builder ,but
+        also
         you can use eloquent at the same time.</p>
-    <p>It's a new feature ,and I'm snowed under the code to fix issues. Anyway this feature is up right now with just
+    <p>It's a new feature ,and I'm snowed under the code to fix issues. Anyway this feature is up right now with
+        just
         some limitation.
-        We don't support <code>WhereCustomCondition</code> and <code>WhereHas</code> for query builder at the moment but
+        We don't support <code>WhereCustomCondition</code> and <code>WhereHas</code> for query builder at the moment
+        but
         other conditions were ready to use.
         in addition, we don't have any kind of <code>whitelist</code> , <code>blacklist</code> , <code>custom
             detectioon</code> or <code>alias</code>.
@@ -1095,7 +1136,8 @@ class User extends Model
     <h3 id="requestfilter">Request Filter</h3>
     <p>Eloquent Filter has a magic method for just change requests injected before handling by eloquent filter. This
         method is
-        SerializeRequestFilter. You just implement <code>SerializeRequestFilter</code> method in your Model. For example
+        SerializeRequestFilter. You just implement <code>SerializeRequestFilter</code> method in your Model. For
+        example
     </p>
     <pre><code class="language-php">
 class User extends Model
@@ -1108,7 +1150,8 @@ class User extends Model
     }
 }
 </code></pre>
-    <p>As above code, you can modify every query params of the Model in the method <code>serializeRequestFilter</code>
+    <p>As above code, you can modify every query params of the Model in the method
+        <code>serializeRequestFilter</code>
         before running by Eloquent Filter.
         That is a practical method when you want to set user_id or convert date or remove space and others.</p>
 
@@ -1134,9 +1177,11 @@ class Category extends Model
 }</code></pre>
     <br>
     <h3 id="responsefilter">Response Filter</h3>
-    <p>Response Filter is an overriding method for changing response right after handle by Eloquent Filter. The method
+    <p>Response Filter is an overriding method for changing response right after handle by Eloquent Filter. The
+        method
         called
-        <code>getResponseFilter</code> and You could implement the method <code>getResponseFilter</code> in your Model.
+        <code>getResponseFilter</code> and You could implement the method <code>getResponseFilter</code> in your
+        Model.
         e.g:</p>
     <pre><code class="language-php">
 class User extends Model
@@ -1151,7 +1196,8 @@ class User extends Model
 </code></pre>
 
 
-    <p>You are capable of passing a callback function to `getResponseFilter` method to change the response. We only have
+    <p>You are capable of passing a callback function to `getResponseFilter` method to change the response. We only
+        have
         this feature in query builder DB.</p>
 
     <pre><code class="language-php">
@@ -1165,7 +1211,8 @@ $categories = DB::table('categories')->filter()->getResponseFilter(function ($ou
 
 
     <h3 id="blacklistdetections">Black List Detections</h3>
-    <p>Obviously, you never want all users who are able to get data by manipulating requests. As a result, we'd better
+    <p>Obviously, you never want all users who are able to get data by manipulating requests. As a result, we'd
+        better
         have
         an eloquent control feature.
         Although we have this ability on request side, we need this feature on Eloquent side as well.</p>
@@ -1216,7 +1263,8 @@ class Car extends Model
 }
 </code></pre>
     <h3 id="macromethods">Macro Methods</h3>
-    <p>-<code>isUsedEloquentFilter</code> is a macro method for builder to check either query used eloquent-filter.</p>
+    <p>-<code>isUsedEloquentFilter</code> is a macro method for builder to check either query used eloquent-filter.
+    </p>
     <p>-<code>getDetectionsInjected</code> is a macro method to get list array of injected objects.</p>
     <p>e.g:</p>
     <pre><code class="language-php">$users = User::SetCustomDetection([WhereRelationLikeCondition::class])-&gt;filter();
@@ -1225,7 +1273,8 @@ echo $users-&gt;getDetectionsInjected();
 // will showing a list array of injected objects
 </code></pre>
     <h2 id="contributing">Contributing</h2>
-    <p>If you'd like to contribute to Eloquent Filter, please fork the repository and create a pull request. We welcome
+    <p>If you'd like to contribute to Eloquent Filter, please fork the repository and create a pull request. We
+        welcome
         contributions of all kinds, including bug fixes, new features, and documentation improvements.</p>
     <h2 id="license">License</h2>
     <p>Eloquent Filter is open-source software licensed under the <a href="https://opensource.org/licenses/MIT">MIT
